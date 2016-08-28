@@ -1,0 +1,40 @@
+<nav id="navbar" class="navbar navbar-default">
+	<div>
+		<div class="navbar-header">
+			<a
+				aria-label="Home"
+				[routerLink]="['/']"
+				tabindex="5"
+				href="#app-home"
+				class="navbar-brand ion-spoon">
+			</a>
+			<button
+				type="button"
+				class="navbar-toggle"
+				(click)="isCollapsed = !isCollapsed"
+				aria-label="Toggle navigation options"
+				tabindex="5">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+		</div>
+		<div class="navbar-collapse fix-on-init" [ngClass]="{'navbar-closed': isCollapsed}">
+			<ul class="nav navbar-nav">
+        <li role="menuitem">
+					<a
+						[routerLink]="['/']"
+						tabindex="5"
+						href="#app-schedule">Restaurants</a>
+        </li>
+				<li role="menuitem">
+					<a
+						[routerLink]="['/']"
+						tabindex="5"
+						href="#app-map">About</a>
+        </li>
+			</ul>
+		</div>
+	</div>
+</nav>

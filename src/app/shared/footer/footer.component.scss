@@ -1,0 +1,22 @@
+@import '../../styles/variables';
+.footer {
+  background-color: gray;
+  .links {
+    text-align: center;
+    margin: 0;
+    li {
+      display: inline-block;
+      margin: 20px;
+      a, a:hover {
+        color: white;
+      }
+    }
+    @media (max-width: 500px) {
+      li {
+        display: block;
+      }
+      padding: 20px;
+      padding-bottom: 70px;
+    }
+  }
+}

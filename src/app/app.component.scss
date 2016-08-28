@@ -1,0 +1,23 @@
+@import './styles/variables';
+$defaultFooterHeight: 40px;
+html, body {
+  height: 100%;
+}
+.wrapper {
+  position: relative;
+  min-height: 100%;
+  .content-container {
+    display: block;
+    padding-bottom: $defaultFooterHeight + 40px;
+    @media (max-width: 500px) {
+      padding-bottom: $defaultFooterHeight + 40px + 170px;
+    }
+  }
+  app-footer {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: block;
+  }
+}
