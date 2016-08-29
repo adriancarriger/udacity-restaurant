@@ -12,6 +12,26 @@ declare let google: any;
 export class PlacesService {
   public places = [];
   public placesMeta = {};
+  private cuisineTypes = [
+    'Barbecue',
+    'Fast food',
+    'Pizza',
+    'Sandwiches',
+    'Seafood',
+    'Steakhouses'
+  ];
+  private ethnicities = [
+    'Chinese',
+    'Greek',
+    'Italian',
+    'Japanese',
+    'Mexican',
+    'Thai'
+  ];
+  private rateLimit: number = 500; // Only create a request every x miliseconds
+  private timeoutWait: number = 0;
+  private queries = {};
+
   constructor(
     private http: Http,
     private mapsApiLoader: MapsAPILoader) {
@@ -57,46 +77,101 @@ export class PlacesService {
         center: pyrmont,
         zoom: 15
       });
-      let request = {
-        location: pyrmont,
-        radius: '2000',
-        types: ['restaurant']
-      };
       let service = new google.maps.places.PlacesService(map);
-      // Request nearby restaurants
-      service.nearbySearch(request, (results, status) => {
-        let rateLimit: number = 400; // Only create a request every x miliseconds
-        let timeoutWait: number = 0;
-        // Loop through nearby restaurants
-        for (let i = 0; i < results.length; i++) {
-          if ('photos' in results[i]) {
-            let id = results[i].place_id;
-            this.places.push( id );
-            this.placesMeta[id] = {
-              name: results[i].name,
-              phone: null,
-              photo: results[i].photos[0].getUrl({'maxWidth': 1000, 'maxHeight': 1000}),
-              rating: results[i].rating,
-              reviews: [],
-              vicinity: results[i].vicinity,
-              website: null
-            }
-            setTimeout( () => {
-              service.getDetails(results[i], (result, status) => {
-                if (status === 'OK') {
-                  this.placesMeta[result.place_id].phone = result.formatted_phone_number;
-                  this.placesMeta[result.place_id].reviews = result.reviews;
-                  this.placesMeta[result.place_id].website = result.website;
-                } else {
-                  console.warn('Couldn\'t get details. Returned status: ' + status);
+      let queryArray = [];
+      // Add queries
+      this.addQueries( this.cuisineTypes );
+      this.addQueries( this.ethnicities );
+      // It was nessiary to make multiple `textSearch` api
+      // calls to get types => http://stackoverflow.com/a/17850358/5357459
+      for (let query in this.queries) {
+        if (this.queries.hasOwnProperty(query)) {
+          setTimeout( () => {
+            let request = {
+              location: pyrmont,
+              radius: '2000',
+              query: query,
+              types: ['restaurant']
+            };
+            // Request nearby restaurants
+            service.textSearch(request, (results, status) => {
+              this.queries[query] = true;
+              if (status === 'OK') {
+                // Loop through nearby restaurants
+                for (let i = 0; i < results.length; i++) {
+                  if ('photos' in results[i]) {
+                    let id = results[i].place_id;
+                    if (id in this.placesMeta) {
+                      // If place was already added from another query,
+                      // then just add this query to the types array
+                      this.placesMeta[id].types.push(query);
+                    } else {
+                      this.places.push( id );
+                      this.placesMeta[id] = {
+                        name: results[i].name,
+                        detailsAdded: false,
+                        phone: null,
+                        photo: results[i].photos[0].getUrl({'maxWidth': 1000, 'maxHeight': 1000}),
+                        rating: results[i].rating,
+                        reviews: [],
+                        types: [query],
+                        vicinity: results[i].vicinity,
+                        website: null
+                      } 
+                    }     
+                  }
                 }
-              });
-            }, timeoutWait);
-            timeoutWait += rateLimit;            
-          }
+              }
+              if (this.queriesComplete()) {
+                console.log( this.placesMeta );
+                this.getDetails(service);
+              }
+            });
+          }, this.timeoutWait);
+          this.timeoutWait += this.rateLimit;
         }
-      });
+      }
     });
   }
 
+  private addQueries(queries): void {
+    for (let i = 0; i < queries.length; i++) {
+      this.queries[ queries[i] ] = false;
+    }
+  }
+
+  private queriesComplete(): boolean {
+    
+    for (let query in this.queries) {
+      if (this.queries.hasOwnProperty(query)) {
+        if (!this.queries[query]) {
+          return false;
+        }
+      }
+    }
+    return true;
+  }
+
+  private getDetails(service) {
+    this.timeoutWait = 0;
+    for (let place_id in this.placesMeta) {
+      if (this.placesMeta.hasOwnProperty(place_id)) {
+        let request = {
+          placeId: place_id
+        };
+        setTimeout( () => {
+          service.getDetails(request, (result, status) => {
+            if (status === 'OK') {
+              this.placesMeta[result.place_id].phone = result.formatted_phone_number;
+              this.placesMeta[result.place_id].reviews = result.reviews;
+              this.placesMeta[result.place_id].website = result.website;
+            } else {
+              console.warn('Couldn\'t get details. Returned status: ' + status);
+            }
+          });
+        }, this.timeoutWait);
+        this.timeoutWait += this.rateLimit;
+      }
+    }
+  }
 }
