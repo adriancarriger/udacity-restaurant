@@ -107,7 +107,7 @@ export class PlacesService {
                     if (id in this.placesMeta) {
                       // If place was already added from another query,
                       // then just add this query to the types array
-                      this.placesMeta[id].types.push(query);
+                      this.placesMeta[id].typesArray.push(query);
                     } else {
                       this.places.push( id );
                       this.placesMeta[id] = {
@@ -118,7 +118,8 @@ export class PlacesService {
                         photo: results[i].photos[0].getUrl({'maxWidth': 1000, 'maxHeight': 1000}),
                         rating: results[i].rating,
                         reviews: [],
-                        types: [query],
+                        typesArray: [query],
+                        types: '',
                         vicinity: '',
                         website: null
                       } 
@@ -144,6 +145,15 @@ export class PlacesService {
     }
   }
 
+  private queriesToString(input: Array<string>): string {
+    let queryString: string = '';
+    for (let i = 0; i < input.length; i++) {
+      queryString += input[i];
+      if (i + 1 !== input.length) { queryString += ', '; }
+    }
+    return queryString;
+  }
+
   private queriesComplete(): boolean {
     
     for (let query in this.queries) {
@@ -160,6 +170,8 @@ export class PlacesService {
     this.timeoutWait = 0;
     for (let place_id in this.placesMeta) {
       if (this.placesMeta.hasOwnProperty(place_id)) {
+        let qString: string = this.queriesToString( this.placesMeta[place_id].typesArray );
+        this.placesMeta[place_id].types = qString;
         let request = {
           placeId: place_id
         };
