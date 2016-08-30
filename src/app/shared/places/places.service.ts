@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, ApplicationRef } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
@@ -6,13 +6,15 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/publishLast';
 import { MapsAPILoader } from 'angular2-google-maps/core';
+import * as moment from 'moment';
 declare let google: any;
+
 
 @Injectable()
 export class PlacesService {
   public places = [];
   public placesMeta = {};
-  private cuisineTypes = [
+  public cuisineTypes = [
     'Barbecue',
     'Fast food',
     'Pizza',
@@ -20,7 +22,7 @@ export class PlacesService {
     'Seafood',
     'Steakhouses'
   ];
-  private ethnicities = [
+  public ethnicities = [
     'Chinese',
     'Greek',
     'Italian',
@@ -34,7 +36,8 @@ export class PlacesService {
 
   constructor(
     private http: Http,
-    private mapsApiLoader: MapsAPILoader) {
+    private mapsApiLoader: MapsAPILoader,
+    private applicationRef: ApplicationRef) {
   }
 
   /**
@@ -110,12 +113,13 @@ export class PlacesService {
                       this.placesMeta[id] = {
                         name: results[i].name,
                         detailsAdded: false,
+                        hours: [],
                         phone: null,
                         photo: results[i].photos[0].getUrl({'maxWidth': 1000, 'maxHeight': 1000}),
                         rating: results[i].rating,
                         reviews: [],
                         types: [query],
-                        vicinity: results[i].vicinity,
+                        vicinity: '',
                         website: null
                       } 
                     }     
@@ -123,10 +127,10 @@ export class PlacesService {
                 }
               }
               if (this.queriesComplete()) {
-                console.log( this.placesMeta );
                 this.getDetails(service);
               }
             });
+            this.applicationRef.tick() ;
           }, this.timeoutWait);
           this.timeoutWait += this.rateLimit;
         }
@@ -162,16 +166,66 @@ export class PlacesService {
         setTimeout( () => {
           service.getDetails(request, (result, status) => {
             if (status === 'OK') {
+              if ('opening_hours' in result && 'periods' in result.opening_hours) {
+                this.placesMeta[result.place_id].hours
+                  = this.hoursToArray(result.opening_hours);
+              }
               this.placesMeta[result.place_id].phone = result.formatted_phone_number;
               this.placesMeta[result.place_id].reviews = result.reviews;
+              this.placesMeta[result.place_id].vicinity = result.vicinity;
               this.placesMeta[result.place_id].website = result.website;
             } else {
               console.warn('Couldn\'t get details. Returned status: ' + status);
             }
           });
+          this.applicationRef.tick() ;
         }, this.timeoutWait);
         this.timeoutWait += this.rateLimit;
       }
     }
   }
+
+  private formatTime(input: string): string {
+    // Remove spaces, use lowercase
+    let formated: string = input.split(' ').join('').toLowerCase();
+    // Add space for comma
+    return formated.split(',').join(', ');
+  }
+
+  private hoursToArray(input?): Array<string> {
+    if (input.periods.length === 1) { return ['24 hours']; } 
+    let days = [];
+    for (let i = 0; i < input.weekday_text.length; i++) {
+      let index = i + 1;
+      if (i === 6) { index = 0; }
+      days[index] = this.formatTime( input.weekday_text[i].split(': ')[1] );
+    }
+    let output = [];
+    // Merge duplicate days
+    let lastDay: string = days[0];
+    let firstInPattern: number = 0;
+    for (let i = 1; i < days.length; i++) {
+      if (days[i] !== lastDay) {
+        // Convert last to string
+        let dayString = this.daysToString(firstInPattern, i-1);
+        output.push( dayString + days[i-1] );
+        lastDay = days[i];
+        firstInPattern = i;
+      }
+    }
+    let dayString = this.daysToString(firstInPattern, 6);
+    output.push( dayString + days[6] );
+    return output;
+  }
+
+  private daysToString(firstDay: number, lastDay: number): string {
+    if (firstDay === 0 && lastDay === 6) { return 'Everyday '}
+    let firstM = moment().day(firstDay);
+    let lastM =  moment().day(lastDay);
+    let multipleDayString: string = '';
+    // If hours are for multiple days
+    if (firstDay !== lastDay) { multipleDayString =  '-' + lastM.format('ddd') }
+    return firstM.format('ddd') + multipleDayString + ' ';
+  }
+
 }

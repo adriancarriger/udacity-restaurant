@@ -1,3 +1,53 @@
-<p>
-  home works!
-</p>
+<div class="home-container">
+  <div class="slider">
+
+  </div>
+  <div class="filter">
+    <input type="text">
+    <select
+      aria-label="Select a cuusine filter"
+      tabindex="10">
+      <option class="default-select" disabled selected value>select a cuisine</option>
+      <option *ngFor="let cuisine of places.cuisineTypes" value="{{cuisine}}">{{cuisine}}</option>
+    </select>
+    <select
+      aria-label="Select an ethnicity filter"
+      tabindex="10">
+      <option class="default-select" disabled selected value>select an ethnicity</option>
+      <option *ngFor="let ethnicity of places.ethnicities" value="{{ethnicity}}">{{ethnicity}}</option>
+    </select>
+  </div>
+  <div class="restaurants">
+    <div *ngFor="let placeId of places.places" class="restaurant">
+      <div class="restaurant-image">
+        <img src="{{places.placesMeta[placeId].photo}}" />
+      </div>
+      <div class="restaurant-meta">
+        <div class="restaurant-name">
+          {{places.placesMeta[placeId].name}}
+        </div>
+        <div class="restaurant-phone">
+          {{places.placesMeta[placeId].phone}}
+        </div>
+        <div class="restaurant-address">
+          {{places.placesMeta[placeId].vicinity}}
+        </div>
+        <div class="restaurant-website">
+          <a href="{{places.placesMeta[placeId].website}}" target="_blank">Website</a>
+        </div>
+        <div class="restaurant-hours-container">
+          <div *ngFor="let hoursString of places.placesMeta[placeId].hours" class="restaurant-hours">
+            {{hoursString}}
+          </div>
+        </div>
+      </div>
+      <div class="restaurant-details">
+        <div class="restaurant-types">
+        </div>
+        <div class="restaurant-rating">
+          {{places.placesMeta[placeId].rating}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
