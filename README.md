@@ -2,6 +2,10 @@
 
 This is my third of five projects in the Udacity [Senior Web Developer Nanodegree](https://www.udacity.com/course/senior-web-developer-nanodegree--nd802) program. This is a work in progress.
 
+## Demo
+
+To view the state of this unfinished project, checkout the demo at: [https://adriancarriger.github.io/udacity-restaurant/](https://adriancarriger.github.io/udacity-restaurant/)
+
 ## Description
 
 A restaurant review application with a focus on accessibility that meets the [requirements](REQUIREMENTS.md).
