@@ -11,8 +11,13 @@
     .restaurant {
       width: 100%;
       display: block;
+      position: relative;
       padding: 20px 5%;
       border-top: 1px solid lightgray;
+      color: gray;
+      .meta-group {
+        padding-bottom: 20px;
+      }
       .restaurant-image {
         max-height: 180px;
         overflow: hidden;
@@ -22,9 +27,23 @@
       }
       .restaurant-meta {
         padding: 0 10px;
+        .restaurant-name {
+          font-size: 18px;
+        }
       }
       .restaurant-details {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
         padding: 0 10px;
+        // https://css-tricks.com/centering-in-the-unknown/
+        display: table;
+        &-content {
+          display: table-cell;
+          vertical-align: middle;
+        }
       }
     }
   }

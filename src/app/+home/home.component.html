@@ -22,32 +22,38 @@
       <div class="restaurant-image col-xs-4">
         <img src="{{places.placesMeta[placeId].photo}}" />
       </div>
-      <div class="restaurant-meta col-xs-4">
-        <div class="restaurant-name">
-          {{places.placesMeta[placeId].name}}
+      <div class="restaurant-meta col-xs-5">
+        <div class="meta-group">
+          <div class="restaurant-name">
+            <a href="#">{{places.placesMeta[placeId].name}}</a>
+          </div>
+          <div class="restaurant-phone">
+            {{places.placesMeta[placeId].phone}}
+          </div>
         </div>
-        <div class="restaurant-phone">
-          {{places.placesMeta[placeId].phone}}
+        <div class="meta-group">
+          <div class="restaurant-address">
+            {{places.placesMeta[placeId].vicinity}}
+          </div>
+          <div class="restaurant-website">
+            <a href="{{places.placesMeta[placeId].website}}" target="_blank">Website</a>
+          </div>
         </div>
-        <div class="restaurant-address">
-          {{places.placesMeta[placeId].vicinity}}
-        </div>
-        <div class="restaurant-website">
-          <a href="{{places.placesMeta[placeId].website}}" target="_blank">Website</a>
-        </div>
-        <div class="restaurant-hours-container">
+        <div class="restaurant-hours-container meta-group">
           <div *ngFor="let hoursString of places.placesMeta[placeId].hours" class="restaurant-hours">
             {{hoursString}}
           </div>
         </div>
       </div>
-      <div class="restaurant-details col-xs-4">
-        <div class="restaurant-types">
-          {{places.placesMeta[placeId].types}}
+      <div class="restaurant-details col-xs-3">
+        <div class="restaurant-details-content">
+          <app-star-view
+            [percentage]="(places.placesMeta[placeId].rating / 5) * 100"
+            class="restaurant-rating"></app-star-view>
+          <div class="restaurant-types">
+            {{places.placesMeta[placeId].types}}
+          </div>
         </div>
-        <app-star-view
-          [percentage]="(places.placesMeta[placeId].rating / 5) * 100"
-          class="restaurant-rating"></app-star-view>
       </div>
     </div>
   </div>
