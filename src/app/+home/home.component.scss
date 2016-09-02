@@ -11,26 +11,19 @@
     .restaurant {
       width: 100%;
       display: block;
-      height: 120px;
-      clear: both;
-      padding: 20px 10%;
-      box-sizing: content-box;
+      padding: 20px 5%;
       border-top: 1px solid lightgray;
       .restaurant-image {
-        width: 20%;
-        float: left;
+        max-height: 180px;
+        overflow: hidden;
         img {
           width: 100%;
         }
       }
       .restaurant-meta {
-        float: left;
-        width: 50%;
         padding: 0 10px;
       }
       .restaurant-details {
-        float: right;
-        width: 30%;
         padding: 0 10px;
       }
     }

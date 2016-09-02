@@ -6,6 +6,7 @@ import { provideLazyMapsAPILoaderConfig, GOOGLE_MAPS_PROVIDERS } from 'angular2-
 
 import { NavbarComponent } from './navbar/index';
 import { FooterComponent } from './footer/index';
+import { StarViewComponent } from './star-view/index';
 import { PlacesService } from './places/index';
 
 /**
@@ -14,8 +15,8 @@ import { PlacesService } from './places/index';
 
 @NgModule({
   imports: [CommonModule, RouterModule],
-  declarations: [NavbarComponent, FooterComponent],
-  exports: [NavbarComponent, FooterComponent,
+  declarations: [NavbarComponent, FooterComponent, StarViewComponent],
+  exports: [NavbarComponent, FooterComponent, StarViewComponent,
     CommonModule, FormsModule, RouterModule]
 })
 export class SharedModule {

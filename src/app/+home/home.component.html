@@ -18,11 +18,11 @@
     </select>
   </div>
   <div class="restaurants">
-    <div *ngFor="let placeId of places.places" class="restaurant">
-      <div class="restaurant-image">
+    <div *ngFor="let placeId of places.places" class="restaurant container-fluid">
+      <div class="restaurant-image col-xs-4">
         <img src="{{places.placesMeta[placeId].photo}}" />
       </div>
-      <div class="restaurant-meta">
+      <div class="restaurant-meta col-xs-4">
         <div class="restaurant-name">
           {{places.placesMeta[placeId].name}}
         </div>
@@ -41,13 +41,13 @@
           </div>
         </div>
       </div>
-      <div class="restaurant-details">
+      <div class="restaurant-details col-xs-4">
         <div class="restaurant-types">
           {{places.placesMeta[placeId].types}}
         </div>
-        <div class="restaurant-rating">
-          {{places.placesMeta[placeId].rating}}
-        </div>
+        <app-star-view
+          [percentage]="(places.placesMeta[placeId].rating / 5) * 100"
+          class="restaurant-rating"></app-star-view>
       </div>
     </div>
   </div>

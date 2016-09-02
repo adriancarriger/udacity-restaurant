@@ -4,3 +4,4 @@
 export { NavbarComponent } from './navbar/index';
 export { FooterComponent } from './footer/index';
 export { PlacesService } from './places/index';
+export { StarViewComponent } from './star-view/index';
