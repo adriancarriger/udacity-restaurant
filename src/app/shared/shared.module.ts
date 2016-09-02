@@ -8,6 +8,7 @@ import { NavbarComponent } from './navbar/index';
 import { FooterComponent } from './footer/index';
 import { StarViewComponent } from './star-view/index';
 import { PlacesService } from './places/index';
+import { CroppedImageComponent } from './cropped-image/index';
 
 /**
  * Do not specify providers for modules that might be imported by a lazy loaded module.
@@ -15,9 +16,21 @@ import { PlacesService } from './places/index';
 
 @NgModule({
   imports: [CommonModule, RouterModule],
-  declarations: [NavbarComponent, FooterComponent, StarViewComponent],
-  exports: [NavbarComponent, FooterComponent, StarViewComponent,
-    CommonModule, FormsModule, RouterModule]
+  declarations: [
+    NavbarComponent,
+    FooterComponent,
+    StarViewComponent,
+    CroppedImageComponent
+  ],
+  exports: [
+    NavbarComponent,
+    FooterComponent,
+    StarViewComponent,
+    CroppedImageComponent,
+    CommonModule,
+    FormsModule,
+    RouterModule
+  ]
 })
 export class SharedModule {
   static forRoot(): ModuleWithProviders {

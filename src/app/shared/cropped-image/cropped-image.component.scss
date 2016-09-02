@@ -1,0 +1,13 @@
+// http://stackoverflow.com/a/36175093/5357459
+:host {
+  width: 100%;
+  height: 100%;
+  // Background
+  background-position: center center;
+  background-repeat: no-repeat;
+  // Background size
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
