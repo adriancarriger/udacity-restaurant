@@ -1,4 +1,4 @@
-<nav id="navbar" class="navbar navbar-default">
+<nav id="navbar" class="navbar navbar-default" [ngClass]="{'darker': !isCollapsed}">
 	<div>
 		<div class="navbar-header">
 			<a
@@ -6,7 +6,7 @@
 				[routerLink]="['/']"
 				tabindex="5"
 				href="#app-home"
-				class="navbar-brand ion-spoon">
+				class="navbar-brand ion-fork">
 			</a>
 			<button
 				type="button"
@@ -20,7 +20,7 @@
 				<span class="icon-bar"></span>
 			</button>
 		</div>
-		<div class="navbar-collapse fix-on-init" [ngClass]="{'navbar-closed': isCollapsed}">
+		<div [ngClass]="{'not-collapsed': !isCollapsed}" class="mobile-collapse" >
 			<ul class="nav navbar-nav">
         <li role="menuitem">
 					<a
