@@ -1,5 +1,4 @@
 @import '../../styles/variables';
-$darkerOverlay: rgba(45, 45, 45, 0.6);
 .navbar {
 	background-color: transparent;
 	border: none;
@@ -10,26 +9,34 @@ $darkerOverlay: rgba(45, 45, 45, 0.6);
 	left: 0;
 	right: 0;
 	z-index: 3;
-	&.darker {
-		@media (max-width: 768px) {
-			background-color: $darkerOverlay;
-		}
-		
-	}
 	a {
 		cursor: pointer;
+	}
+	.darker {
+		@media (max-width: 767px) {
+			background-color: rgba(45, 45, 45, 0.6);
+			background: linear-gradient(rgba(45, 45, 45, 0.6), rgba(45, 45, 45, 1));
+		}
 	}
 	&.navbar-default {
 		.navbar-brand, .navbar-nav > li > a {
 			color: white;
 			margin: 5px 0;
+			@media (max-width: 767px) {
+				margin: 15px;
+			}
+			&:focus {
+				outline: $whiteOutline;
+			}
 		}
 		.navbar-nav {
 			margin: 0;
-			li {
-				border-top: 1px solid white;
-				&:last-of-type {
-					border-bottom: 1px solid white;
+			@media (max-width: 767px) {
+				li {
+					border-top: 1px solid white;
+					&:last-of-type {
+						border-bottom: 1px solid white;
+					}
 				}
 			}
 		}
@@ -46,10 +53,7 @@ $darkerOverlay: rgba(45, 45, 45, 0.6);
 	.navbar-toggle {
 		border: none;
 		&:focus {
-			outline: initial;
-			outline-color: -webkit-focus-ring-color;
-			outline-style: auto;
-			outline-width: initial;
+			outline: $whiteOutline;
 		}
 		.icon-bar {
 			background-color: white;
@@ -65,9 +69,8 @@ $darkerOverlay: rgba(45, 45, 45, 0.6);
 		}
 	}
 }
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .mobile-collapse {
-		background-color: $darkerOverlay;
 		text-align: center;
   }
 }

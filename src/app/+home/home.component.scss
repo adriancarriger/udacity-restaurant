@@ -43,7 +43,7 @@ $filterHeight: 55px;
       color: white;
       background-color: transparent;
       &:focus {
-        outline: solid white 2px;
+        outline: $whiteOutline;
       }
       @media (min-width: 768px) {
         display: none;
@@ -59,7 +59,7 @@ $filterHeight: 55px;
       float: left;
       select {
         &:focus {
-          outline: solid white 2px;
+          outline: $whiteOutline;
         }
       }
       &.search {

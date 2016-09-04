@@ -9,6 +9,15 @@
       margin: 20px;
       a, a:hover {
         color: white;
+        padding: 5px;
+      }
+      a {
+        &:focus {
+          outline: $whiteOutline;
+        }
+        &:active {
+          text-decoration: none;
+        }
       }
     }
     @media (max-width: 500px) {
