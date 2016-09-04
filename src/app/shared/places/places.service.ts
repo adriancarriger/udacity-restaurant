@@ -30,6 +30,7 @@ export class PlacesService {
     'Mexican',
     'Thai'
   ];
+  public locations = [];
   private rateLimit: number = 500; // Only create a request every x miliseconds
   private timeoutWait: number = 0;
   private queries = {};
@@ -92,7 +93,7 @@ export class PlacesService {
           setTimeout( () => {
             let request = {
               location: pyrmont,
-              radius: '2000',
+              radius: '8000',
               query: query,
               types: ['restaurant']
             };
@@ -128,6 +129,7 @@ export class PlacesService {
                 }
               }
               if (this.queriesComplete()) {
+                this.defaultSort();
                 this.getDetails(service);
               }
             });
@@ -166,9 +168,16 @@ export class PlacesService {
     return true;
   }
 
+  private defaultSort() {
+    this.places = this.places.sort( (a, b) => {
+      return this.placesMeta[b].rating - this.placesMeta[a].rating;
+    });
+  }
+
   private getDetails(service) {
     this.timeoutWait = 0;
-    for (let place_id in this.placesMeta) {
+    for (let i = 0; i < this.places.length; i++) {
+      let place_id = this.places[i];
       if (this.placesMeta.hasOwnProperty(place_id)) {
         let qString: string = this.queriesToString( this.placesMeta[place_id].typesArray );
         this.placesMeta[place_id].types = qString;
@@ -186,6 +195,15 @@ export class PlacesService {
               this.placesMeta[result.place_id].reviews = result.reviews;
               this.placesMeta[result.place_id].vicinity = result.vicinity;
               this.placesMeta[result.place_id].website = result.website;
+              // Add city to location array
+              for (let n = 0; n < result.address_components.length; n++) {
+                if (result.address_components[n].types.indexOf('locality') !== -1 ) {
+                  let thisLocation = result.address_components[n].long_name;
+                  if (this.locations.indexOf(thisLocation) === -1) {
+                    this.locations.push( thisLocation );
+                  }
+                }
+              }
             } else {
               console.warn('Couldn\'t get details. Returned status: ' + status);
             }

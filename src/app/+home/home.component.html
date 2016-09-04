@@ -17,16 +17,21 @@
         <select
           aria-label="Select a cuusine filter"
           tabindex="10">
-          <option selected value="all">All cuisines</option>
-          <option *ngFor="let cuisine of places.cuisineTypes" value="{{cuisine}}">{{cuisine}}</option>
+          <option selected value="all">All types</option>
+          <optgroup label="Cuisines">
+            <option *ngFor="let cuisine of places.cuisineTypes" value="{{cuisine}}">{{cuisine}}</option>
+          </optgroup>
+          <optgroup label="Countries">
+            <option *ngFor="let ethnicity of places.ethnicities" value="{{ethnicity}}">{{ethnicity}}</option>
+          </optgroup>
         </select>
       </div>
       <div class="input-item">
         <select
-          aria-label="Select an ethnicity filter"
+          aria-label="Select a location filter"
           tabindex="10">
-          <option selected value="all">All ethnicities</option>
-          <option *ngFor="let ethnicity of places.ethnicities" value="{{ethnicity}}">{{ethnicity}}</option>
+          <option selected value="all">All locations</option>
+          <option *ngFor="let location of places.locations"  value="{{location}}">{{location}}</option>
         </select>
       </div>
     </div>
