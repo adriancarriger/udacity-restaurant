@@ -1,4 +1,5 @@
 @import '../styles/variables';
+$filterHeight: 55px;
 .home-container {
   .header {
     width: 100%;
@@ -20,7 +21,113 @@
     }
   }
   .filter {
-
+    padding: 0px 5%;
+    background-color: $primaryColor;
+    color: white;
+    height: $filterHeight;
+    @media (max-width: 767px) {
+      height: auto;
+      padding: 0;
+    }
+    .filter-toggle {
+      color: white;
+      background-color: transparent;
+      &:focus {
+        outline: solid white 2px;
+      }
+      @media (min-width: 768px) {
+        display: none;
+      }
+    }
+    @media (max-width: 767px) {
+      .mobile-collapse {
+        border-top: 1px solid white;
+      }
+    }
+    .input-item {
+      font-size: 18px;
+      float: left;
+      select {
+        &:focus {
+          outline: solid white 2px;
+        }
+      }
+      &.search {
+        width: 500px;
+        min-width: 200px;
+        position: relative;
+        i {
+          position: absolute;
+          top: 17px;
+          left: 31px;
+        }
+        input {
+          border-radius: 25px;
+          padding: 6px 10px 6px 40px;
+          border: none;
+          outline: none;
+          width: 100%;
+          background-color: #f77;
+          line-height: 1;
+          font-size: 18px;
+          margin: 11px 0;
+          color: white;
+          &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+            color: white;
+          }
+          &:focus {
+            background-color: white;
+            color: gray;
+            &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+              color: gray;
+            }
+            & + i {
+              color: gray;
+            }
+          }
+        }
+      }
+      @media (max-width: 1400px) {
+        &.search {
+          width: 18%;
+        }
+        padding: 0px 20px;
+      }
+      @media (min-width: 768px) and (max-width: 1400px) {
+        &.search {
+          width: 35%;
+        }
+      }
+      @media (max-width: 767px) {
+        width: 100%;
+        border-bottom: 1px solid white;
+        float: initial;
+        padding: 0;
+        &.search {
+          border-bottom: none;
+          width: 90%;
+          margin-left: auto;
+          margin-right: auto;
+          i {
+            left: 12px;
+          }
+          input {
+            width: 82%;
+          }
+        }
+        select {
+          box-sizing: content-box;
+          margin: 10px auto;
+          width: 94%;
+          padding-left: 2%;
+          padding-right: 2%;
+        }
+      }
+    }
+    input {
+      padding: 10px;
+      color: gray;
+    }
   }
   .restaurants {
     .restaurant {
@@ -69,5 +176,39 @@
         }
       }
     }
+  }
+}
+
+// default select styling
+select {
+  $selectColor: #e6e6e6;
+  color: white;
+  display: block;
+  font-size: 18px;
+  border: none;
+  box-shadow: none;
+  $selectMargin: 5px;
+  height: $filterHeight - ($selectMargin * 2);
+  margin: $selectMargin;
+  padding: 0 10px;
+  width: 160px;
+  min-width: 100px;
+  background-color: transparent;
+  border-radius: 0px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-position: 98% 50%;
+  background-repeat: no-repeat;
+  background-image: url('assets/ios-down-arrow.svg');
+  background-size: 30px;
+  cursor: pointer;
+  &::-ms-expand{
+    display:none;
+  }
+  .default-select {
+    display: none;
+  }
+  .hide-option {
+    display: none;
   }
 }

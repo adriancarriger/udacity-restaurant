@@ -8,7 +8,7 @@ import { PlacesService } from '../shared/index';
   styleUrls: ['home.component.scss']
 })
 export class HomeComponent implements OnInit {
-
+  public isCollapsed: boolean = true;
   constructor(public places: PlacesService) { }
 
   ngOnInit() {

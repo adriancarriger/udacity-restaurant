@@ -21,3 +21,13 @@ html, body {
     display: block;
   }
 }
+
+// Collapse for mobile
+.mobile-collapse {
+  @media (max-width: 767px) {
+    display: none;
+    &.not-collapsed {
+      display: block;
+    }
+  }
+}
