@@ -1,5 +1,5 @@
 @import '../../styles/variables';
-$blue: #69b4ff;
+$color: gray;
 .custom-pagination {
     display: flex;
     max-width: 300px;
@@ -15,14 +15,14 @@ $blue: #69b4ff;
       -webkit-user-select: none;
       -ms-user-select: none;
       &.current {
-          border-color: $blue;
+          border-color: $color;
       }
       &.view-all {
           flex-grow: 3;
       }
   }
   a {
-      color: $blue;
+      color: $color;
       cursor: pointer;
       text-decoration: none;
       transition: none 2086ms ease-out;
