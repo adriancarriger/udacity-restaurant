@@ -157,7 +157,6 @@ export class PlacesService {
   }
 
   private queriesComplete(): boolean {
-    
     for (let query in this.queries) {
       if (this.queries.hasOwnProperty(query)) {
         if (!this.queries[query]) {

@@ -1,6 +1,7 @@
 import { Component, ViewEncapsulation, OnInit } from '@angular/core';
 
 import { PlacesService } from './shared/index';
+import { GlobalEventsService } from './shared/index';
 
 @Component({
   selector: 'app-root',
@@ -10,9 +11,12 @@ import { PlacesService } from './shared/index';
 })
 export class AppComponent implements OnInit {
   
-  constructor(private places: PlacesService) { }
+  constructor(
+    private places: PlacesService,
+    private globalEventsService: GlobalEventsService) { }
 
   ngOnInit() {
+    this.globalEventsService.init();
     this.places.loadPlaces();
   }
 }
