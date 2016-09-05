@@ -147,14 +147,15 @@ $filterHeight: 55px;
       padding: 20px 5%;
       border-top: 1px solid lightgray;
       color: gray;
-      min-height: 246px;
+      min-height: 312px;
       .restaurant-image {
-        $imageSize: 180px;
+        $imageSize: 220px;
         width: $imageSize;
         height: $imageSize;
         position: absolute;
         top: 0;
         bottom: 0;
+        left: 2%;
         margin: auto;
         border-radius: 50%;
         overflow: hidden;
@@ -175,6 +176,7 @@ $filterHeight: 55px;
       $contentLeftMobile: 50%;
       .restaurant-meta {
         padding: 0 10px;
+        padding-top: 50px;
         margin-left: 212px;
         @media (max-width: 400px) {
           margin-left: initial;

@@ -18,8 +18,9 @@ export class SearchPipe implements PipeTransform {
       // Remove stop words
       queries = this.removeStopWords( rawQueries );
     }
-    let filtered = value.filter((item) => {
-      // Type filter
+    let filtered = [];
+    filtered = value.filter((item) => {
+      // Type filter  
       if (type !== 'all'
         // if types have not yet been added, then do not filter out item
         && placesMeta[item].types.length > 0
@@ -38,8 +39,8 @@ export class SearchPipe implements PipeTransform {
         // add name to searchable text
         searchable = placesMeta[item].name;
         // add types to searchable text
-        if ('types' in placesMeta[item]) {
-          let types = placesMeta[item].types;
+        if ('typesArray' in placesMeta[item]) {
+          let types = placesMeta[item].typesArray;
           for (let i = 0; i < types.length; i++) {
             searchable += ' ' + types[i];
           } 
@@ -49,7 +50,7 @@ export class SearchPipe implements PipeTransform {
           searchable += ' ' + placesMeta[item].location;
         }
         // Add reviews to searchable text
-        if ('reviews' in placesMeta[item]) {
+        if ('reviews' in placesMeta[item] && placesMeta[item].reviews !== undefined) {
           let reviews = placesMeta[item].reviews;
           for (let i = 0; i < reviews.length; i++) {
             if ('text' in reviews[i]) {
