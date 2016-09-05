@@ -47,7 +47,7 @@
   </div>
   <div class="restaurants">
     <div
-      *ngFor="let placeId of places.places | appSearch:places.placesMeta:termSearch:typeSearch:locationSearch:filteredMeta | paginate: config"
+      *ngFor="let placeId of places.places | appSearch:places.placesMeta:termSearch:typeSearch:locationSearch:filteredMeta:places.lastUpdated | paginate: config"
       class="restaurant">
       <app-cropped-image
         [src]="places.placesMeta[placeId].photo"
@@ -86,7 +86,7 @@
         </div>
       </div>
     </div>
-    <div *ngIf="places.places?.length > 0 && filteredMeta?.count === 0" class="no-results">
+    <div *ngIf="places.places !== undefined && filteredMeta?.count === 0" class="no-results">
         No matches for {{filteredMeta.query}}
     </div>
     <app-pagination (pageChange)="config.currentPage = $event" [config]="config"></app-pagination>

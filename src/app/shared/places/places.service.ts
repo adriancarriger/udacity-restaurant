@@ -29,6 +29,8 @@ export class PlacesService {
     'Mexican',
     'Thai'
   ];
+  public lastUpdated: number;
+  public updating: boolean = false;
   public locations = [];
   private rateLimit: number = 500; // Only create a request every x miliseconds
   private timeoutWait: number = 0;
@@ -205,11 +207,23 @@ export class PlacesService {
             } else {
               console.warn('Couldn\'t get details. Returned status: ' + status);
             }
+            this.triggerUpdate();
           });
           this.applicationRef.tick() ;
         }, this.timeoutWait);
         this.timeoutWait += this.rateLimit;
       }
+    }
+  }
+
+  private triggerUpdate(): void {
+    // Throttle pipe updates
+    if (!this.updating) {
+      this.updating = true;
+      setTimeout( () => {
+        this.lastUpdated = new Date().getTime();
+        this.updating = false;
+      }, 1000);
     }
   }
 
