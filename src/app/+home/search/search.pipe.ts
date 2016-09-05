@@ -8,7 +8,10 @@ export class SearchPipe implements PipeTransform {
   transform(value: any, placesMeta: any, term?, type?, location?, filteredMeta?, lastUpdated?): any {
     let queries: Array<string> = [];
     if (value === undefined) { return; }
-    if (term === '' && type === 'all' && location === 'all') { return value; }
+    if (term === '' && type === 'all' && location === 'all') {
+      filteredMeta.count = -1; // filter not active 
+      return value;
+    }
     if (term.length) {
       // Treat each word as a query and normalize to lowercase
       let rawQueries: Array<string> = term.toLowerCase().split( ' ' );
