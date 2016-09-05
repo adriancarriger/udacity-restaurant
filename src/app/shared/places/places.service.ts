@@ -2,13 +2,12 @@ import { Injectable, ApplicationRef } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import { MapsAPILoader } from 'angular2-google-maps/core';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/publishLast';
-import { MapsAPILoader } from 'angular2-google-maps/core';
 import * as moment from 'moment';
 declare let google: any;
-
 
 @Injectable()
 export class PlacesService {
@@ -65,7 +64,7 @@ export class PlacesService {
   /**
     * Handle HTTP error
     */
-  private handleError (error: any) {
+  private handleError (error: any): Observable<any> {
     let errMsg = (error.message) ? error.message :
       error.status ? `${error.status} - ${error.statusText}` : 'Server error';
     console.error(errMsg); // log to console
@@ -167,13 +166,13 @@ export class PlacesService {
     return true;
   }
 
-  private defaultSort() {
+  private defaultSort(): void {
     this.places = this.places.sort( (a, b) => {
       return this.placesMeta[b].rating - this.placesMeta[a].rating;
     });
   }
 
-  private getDetails(service) {
+  private getDetails(service): void {
     this.timeoutWait = 0;
     for (let i = 0; i < this.places.length; i++) {
       let place_id = this.places[i];

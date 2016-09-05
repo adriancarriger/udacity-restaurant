@@ -24,7 +24,6 @@ export class GlobalEventsService {
     let name = element.localName;
     if (name === undefined || name === null) { name = ''; }
     let elementKey = name + event;
-    console.log( elementKey );
     // Only create Observable if one has not be created
     if (!(elementKey in this.elementsCollection)) {
       this.elementsCollection[elementKey] = {

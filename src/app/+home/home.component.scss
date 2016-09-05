@@ -158,10 +158,31 @@ $filterHeight: 55px;
         margin: auto;
         border-radius: 50%;
         overflow: hidden;
+        @media (max-width: 400px) {
+         position: static; 
+        }
+        @media (min-width: 401px) and (max-width: 650px) {
+          width: 40%;
+          height: 0;
+          padding-bottom: 40%;
+        }
+        @media (min-width: 651px) and (max-width: 767px) {
+          left: 6%;
+          width: 250px;
+          height: 250px; 
+        }
       }
+      $contentLeftMobile: 50%;
       .restaurant-meta {
         padding: 0 10px;
         margin-left: 212px;
+        @media (max-width: 400px) {
+          margin-left: initial;
+          padding-top: 20px;
+        }
+        @media (min-width: 401px) and (max-width: 767px) {
+          margin-left: $contentLeftMobile;
+        } 
         .restaurant-name {
           font-size: 18px;
         }
@@ -184,6 +205,14 @@ $filterHeight: 55px;
           display: table-cell;
           vertical-align: middle;
         }
+        @media (max-width: 400px) {
+          position: static;
+          margin-left: initial;
+        }
+        @media (min-width: 401px) and (max-width: 767px) {
+          position: static;
+          margin-left: $contentLeftMobile;
+        } 
       }
     }
   }

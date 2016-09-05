@@ -60,8 +60,11 @@ export class StickyScrollDirective implements OnInit, AfterViewInit {
   /**
    * Sets host element to `position: fixed`
    */
-  private addSticky() {
+  private addSticky(): void {
     this.renderer.setElementStyle(this.element.nativeElement, 'position', 'fixed');
+    this.renderer.setElementStyle(
+      document.documentElement, 'margin-top',
+      this.element.nativeElement.clientHeight + 'px');
   }
 
   /**
@@ -69,6 +72,7 @@ export class StickyScrollDirective implements OnInit, AfterViewInit {
    */
   private removeSticky() {
     this.renderer.setElementStyle(this.element.nativeElement, 'position', null);
+    this.renderer.setElementStyle(document.documentElement, 'margin-top', null);
   }
 
 }
