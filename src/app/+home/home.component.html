@@ -37,7 +37,7 @@
     </div>
   </div>
   <div class="restaurants">
-    <div *ngFor="let placeId of places.places" class="restaurant">
+    <div *ngFor="let placeId of places.places | paginate: config" class="restaurant">
       <app-cropped-image
         [src]="places.placesMeta[placeId].photo"
         class="restaurant-image"></app-cropped-image>
@@ -75,5 +75,6 @@
         </div>
       </div>
     </div>
+    <app-pagination (pageChange)="config.currentPage = $event" [config]="config"></app-pagination>
   </div>
 </div>

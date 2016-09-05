@@ -1,0 +1,33 @@
+@import '../../styles/variables';
+$blue: #69b4ff;
+.custom-pagination {
+    display: flex;
+    max-width: 300px;
+    margin: auto;
+    height: 170px;
+    padding: 70px 0;
+    > div {
+      flex: 1;
+      font-size: 20px;
+      text-align: center;
+      border-bottom: 3px solid transparent;
+      -moz-user-select: none;
+      -webkit-user-select: none;
+      -ms-user-select: none;
+      &.current {
+          border-color: $blue;
+      }
+      &.view-all {
+          flex-grow: 3;
+      }
+  }
+  a {
+      color: $blue;
+      cursor: pointer;
+      text-decoration: none;
+      transition: none 2086ms ease-out;
+  }
+}
+.ng2-pagination {
+    display: none;
+}
