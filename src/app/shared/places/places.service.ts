@@ -81,7 +81,6 @@ export class PlacesService {
         zoom: 15
       });
       let service = new google.maps.places.PlacesService(map);
-      let queryArray = [];
       // Add queries
       this.addQueries( this.cuisineTypes );
       this.addQueries( this.ethnicities );
@@ -197,6 +196,7 @@ export class PlacesService {
               for (let n = 0; n < result.address_components.length; n++) {
                 if (result.address_components[n].types.indexOf('locality') !== -1 ) {
                   let thisLocation = result.address_components[n].long_name;
+                  this.placesMeta[result.place_id].location = thisLocation;
                   if (this.locations.indexOf(thisLocation) === -1) {
                     this.locations.push( thisLocation );
                   }
