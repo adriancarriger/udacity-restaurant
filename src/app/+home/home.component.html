@@ -51,11 +51,12 @@
       class="restaurant">
       <app-cropped-image
         [src]="places.placesMeta[placeId].photo"
+        [routerLink]="['/restaurant', placeId]"
         class="restaurant-image"></app-cropped-image>
       <div class="restaurant-meta">
         <div class="meta-group">
           <div class="restaurant-name">
-            <a  tabindex="10" href="#">{{places.placesMeta[placeId].name}}</a>
+            <a [routerLink]="['/restaurant', placeId]" tabindex="10" href="#">{{places.placesMeta[placeId].name}}</a>
           </div>
           <div class="restaurant-phone">
             {{places.placesMeta[placeId].phone}}

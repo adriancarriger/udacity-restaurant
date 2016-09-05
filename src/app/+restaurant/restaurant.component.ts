@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
+import { PlacesService } from '../shared/index';
 
 @Component({
   selector: 'app-restaurant',
@@ -6,10 +9,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./restaurant.component.scss']
 })
 export class RestaurantComponent implements OnInit {
-
-  constructor() { }
+  public restaurantId: string;
+  constructor(public places: PlacesService,
+    private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
+    this.restaurantId = this.activatedRoute.snapshot.url[1].path;
   }
 
 }

@@ -1,3 +1,30 @@
-<p>
-  restaurant works!
-</p>
+<div class="header container">
+  <div class="image">
+  </div>
+  <div class="restaurant-meta">
+    <div class="meta-item">{{places.placesMeta[restaurantId]?.name}}</div>
+    <div class="meta-item">{{places.placesMeta[restaurantId]?.vicinity}}</div>
+    <div class="meta-item">
+      <div *ngFor="let hoursString of places.placesMeta[restaurantId]?.hours" class="restaurant-hours">
+        {{hoursString}}
+      </div>
+    </div>
+    <div class="meta-item">{{places.placesMeta[restaurantId]?.types}}</div>
+  </div>
+</div>
+<div class="reviews container">
+  <h2>reviews</h2>
+  <div
+    *ngFor="let review of places.placesMeta[restaurantId]?.reviews"
+    class="review">
+    <div class="star-rating">Rating: {{review.rating}}</div>
+    <div class="review-text">Text: {{review.text}}</div>
+    <div class="review-author">Author: {{review.author_name}}</div>
+    <div class="review-time">Time: {{review.time}}</div>
+  </div>
+</div>
+<div class="leave-a-review container">
+  <h2>Leave a Review</h2>
+  <div class="rating-input"></div>
+  form inputs...
+</div>
