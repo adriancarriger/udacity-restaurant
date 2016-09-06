@@ -1,14 +1,10 @@
 @import '../../styles/variables';
 .navbar {
-	background-color: transparent;
+	background-color: $primaryColor;
 	border: none;
 	border-radius: 0;
 	height: $navHeight;
 	margin-bottom: 0;
-	position: absolute;
-	left: 0;
-	right: 0;
-	z-index: 3;
 	a {
 		cursor: pointer;
 	}
@@ -17,6 +13,13 @@
 			background-color: rgba(45, 45, 45, 0.6);
 			background: linear-gradient(rgba(45, 45, 45, 0.6), rgba(45, 45, 45, 1));
 		}
+	}
+	&.transparent {
+		background-color: transparent;
+		position: absolute;
+		left: 0;
+		right: 0;
+		z-index: 3;
 	}
 	&.navbar-default {
 		.navbar-brand, .navbar-nav > li > a {

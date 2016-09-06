@@ -8,12 +8,14 @@ import { Router, NavigationEnd } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
   public isCollapsed: boolean = true;
+  public homePage: boolean;
   constructor(private router: Router) {}
 
   public ngOnInit(): void {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         this.isCollapsed = true;
+        this.homePage = event.url === '/';
       }
     }, (error: any) => {
       this.isCollapsed = true;

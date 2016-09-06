@@ -38,10 +38,17 @@ export class StickyScrollDirective implements OnInit, AfterViewInit {
   private getDimensions(): void {
     // Remove fixed `position: fixed` to get original position from top
     if (this.fixed) { this.removeSticky(); }
-    // Minimum scroll distance before switching to a fixed position
-    this.minScroll = this.element.nativeElement.offsetTop;
-    // Update the position (this will immediately restore `position: fixed` if appropriate)
-    this.updatePosition();
+    /**
+     * Allow the DOM to update (via digest cycle)
+     * before measureing DOM elements
+     */
+    setTimeout( () => {
+      // Minimum scroll distance before switching to a fixed position
+      this.minScroll = this.element.nativeElement.offsetTop;
+      // Update the position (this will immediately restore `position: fixed` if appropriate)
+      this.updatePosition();
+    }, 0);
+    
   }
 
   /**
