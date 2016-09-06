@@ -15,6 +15,7 @@ export class RestaurantComponent implements OnInit {
 
   ngOnInit() {
     this.restaurantId = this.activatedRoute.snapshot.url[1].path;
+    this.places.requestPlace( this.restaurantId );
   }
 
 }

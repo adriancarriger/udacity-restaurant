@@ -35,6 +35,7 @@ export class PlacesService {
   private rateLimit: number = 500; // Only create a request every x miliseconds
   private timeoutWait: number = 0;
   private queries = {};
+  private requestedPlace: string;
 
   constructor(
     private http: Http,
@@ -49,6 +50,14 @@ export class PlacesService {
     this.getCordinates().subscribe( data => {
       this.searchPlaces(data.location);
     });
+  }
+
+  /**
+   * Prioritize getting details for a place
+   * Helpful if a restaurant page is reloaded
+   */
+  public requestPlace(placeId): void {
+    this.requestedPlace = placeId;
   }
 
   /**
@@ -123,7 +132,11 @@ export class PlacesService {
                         types: '',
                         vicinity: '',
                         website: null
-                      } 
+                      }
+                      if (this.requestedPlace !== undefined && this.requestedPlace === id) {
+                        this.getPlaceDetails(id, service);
+                        this.requestedPlace  = undefined;
+                      }
                     }     
                   }
                 }
@@ -177,43 +190,48 @@ export class PlacesService {
     this.timeoutWait = 0;
     for (let i = 0; i < this.places.length; i++) {
       let place_id = this.places[i];
-      if (this.placesMeta.hasOwnProperty(place_id)) {
-        let qString: string = this.queriesToString( this.placesMeta[place_id].typesArray );
-        this.placesMeta[place_id].types = qString;
-        let request = {
-          placeId: place_id
-        };
-        setTimeout( () => {
-          service.getDetails(request, (result, status) => {
-            if (status === 'OK') {
-              if ('opening_hours' in result && 'periods' in result.opening_hours) {
-                this.placesMeta[result.place_id].hours
-                  = this.hoursToArray(result.opening_hours);
-              }
-              this.placesMeta[result.place_id].phone = result.formatted_phone_number;
-              this.placesMeta[result.place_id].reviews = result.reviews;
-              this.placesMeta[result.place_id].vicinity = result.vicinity;
-              this.placesMeta[result.place_id].website = result.website;
-              // Add city to location array
-              for (let n = 0; n < result.address_components.length; n++) {
-                if (result.address_components[n].types.indexOf('locality') !== -1 ) {
-                  let thisLocation = result.address_components[n].long_name;
-                  this.placesMeta[result.place_id].location = thisLocation;
-                  if (this.locations.indexOf(thisLocation) === -1) {
-                    this.locations.push( thisLocation );
-                  }
-                }
-              }
-            } else {
-              console.warn('Couldn\'t get details. Returned status: ' + status);
-            }
-            this.triggerUpdate();
-          });
-          this.applicationRef.tick() ;
-        }, this.timeoutWait);
-        this.timeoutWait += this.rateLimit;
+      if (!this.placesMeta[ place_id ].detailsAdded) {
+        this.getPlaceDetails(place_id, service);
       }
     }
+  }
+
+  private getPlaceDetails(place_id, service) {
+    let qString: string = this.queriesToString( this.placesMeta[place_id].typesArray );
+    this.placesMeta[place_id].types = qString;
+    let request = {
+      placeId: place_id
+    };
+    setTimeout( () => {
+      service.getDetails(request, (result, status) => {
+        if (status === 'OK') {
+          if ('opening_hours' in result && 'periods' in result.opening_hours) {
+            this.placesMeta[result.place_id].hours
+              = this.hoursToArray(result.opening_hours);
+          }
+          this.placesMeta[result.place_id].phone = result.formatted_phone_number;
+          this.placesMeta[result.place_id].reviews = result.reviews;
+          this.placesMeta[result.place_id].vicinity = result.vicinity;
+          this.placesMeta[result.place_id].website = result.website;
+          // Add city to location array
+          for (let n = 0; n < result.address_components.length; n++) {
+            if (result.address_components[n].types.indexOf('locality') !== -1 ) {
+              let thisLocation = result.address_components[n].long_name;
+              this.placesMeta[result.place_id].location = thisLocation;
+              if (this.locations.indexOf(thisLocation) === -1) {
+                this.locations.push( thisLocation );
+              }
+            }
+          }
+          this.placesMeta[result.place_id].detailsAdded = true;
+        } else {
+          console.warn('Couldn\'t get details. Returned status: ' + status);
+        }
+        this.triggerUpdate();
+      });
+      this.applicationRef.tick() ;
+    }, this.timeoutWait);
+    this.timeoutWait += this.rateLimit;
   }
 
   private triggerUpdate(): void {
