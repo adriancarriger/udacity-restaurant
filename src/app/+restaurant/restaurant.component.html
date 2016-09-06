@@ -39,4 +39,9 @@
 </div>
 <div class="leave-a-review container">
   <h2>Leave a Review</h2>
+  <app-form
+    [allFormInfo]="formInfo"
+    [modeInit]="'review'"
+    [tabIndex]="10"
+    (formComplete)="onSubmit($event)"></app-form>
 </div>

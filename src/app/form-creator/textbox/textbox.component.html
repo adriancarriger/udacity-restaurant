@@ -1,0 +1,17 @@
+<input
+  id="{{field.id}}"
+  [attr.type]="type"
+  [formControl]="control"
+  [ngClass]="{'hidden-input':field.inputType === 'file'}"
+  (input)="field.length = onInput($event, field.type);"
+  (focus)="field.focused = true;"
+  (blur)="field.focused = false; onBlur($event)"
+  tabindex="{{tabIndex}}"
+  [attr.required]="field.required ? true :  null"
+  [attr.autocomplete]="field.autocomplete"
+  [attr.aria-label]="field.ariaLabel"
+  [attr.aria-invalid]="showFieldErrors"
+  [attr.aria-autocomplete]="field.addListener === 'location' ? 'both': ''"
+  [attr.role]="field.addListener === 'location' ? 'combobox': ''"
+  [attr.aria-describedby]="'error-description-' + field.id"
+  placeholder="">

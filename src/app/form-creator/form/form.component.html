@@ -1,0 +1,103 @@
+<form *ngIf="active" [formGroup]="registerForm" (submit)="formSubmit()" autocomplete="on">
+  <!-- Form Instructions -->
+  <div class="instructions">{{formInfo.instructions}}</div>
+  <div *ngIf="formErrorMessage" class="instructions error">
+    {{formErrorMessage}}
+  </div>
+  <div *ngFor="let field of formInfo.fields; let i = index" #fieldContainer>
+    <!-- Field Instructions -->
+    <div *ngIf="field.type === 'instructions' && field.show === true" class="instructions {{field.classes}}">
+      {{field.message}}
+    </div>
+    <!-- Input Items -->
+    <div
+      *ngIf="isAnInputType(field.type) && field.show === true"
+      [ngClass]="{'active-item': field.length > 0 || field.focused === true || field.inputType === 'file'}"
+      class="input-item {{field.classes}}">
+      <label
+        attr.for="{{field.id}}">{{field.name}}</label>
+      <!-- Input -->
+      <app-textbox
+        *ngIf="field.type === 'input'"
+        [(control)]="registerForm.controls[field.id]"
+        [field]="field"
+        [tabIndex]="tabIndex"
+        [showFieldErrors]="showFieldErrors(field)"
+        (placeAutocomplete)="onPlaceAutocomplete($event, field.id, i)"></app-textbox>
+      <!-- Textarea -->
+      <textarea
+        *ngIf="field.type === 'textarea'"
+        id="{{field.id}}"
+        rows="4"
+        formControlName="{{field.id}}"
+        [attr.required]="field.required ? true :  null"
+        [attr.aria-label]="field.ariaLabel"
+        [attr.aria-invalid]="showFieldErrors(field)"
+        [attr.aria-describedby]="'error-description-' + field.id"
+        (input)="field.length = onInput($event, field.type);"
+        (focus)="field.focused = true;"
+        (blur)="field.focused = false"
+        tabindex="{{tabIndex}}"
+        placeholder=""></textarea>
+      <!-- Select -->
+      <app-select
+        *ngIf="field.type === 'select'"
+        [items]="field.selectType === 'default' ? field.selectData : getSelectData(field.selectType)"
+        [tabIndex]="tabIndex"
+        [field]="field"
+        [showFieldErrors]="showFieldErrors(field)"
+        [(control)]="registerForm.controls[field.id]"
+        (focus)="field.focused = true"
+        (blur)="field.focused = false">
+      </app-select>
+      <!-- Validation errors -->
+      <p
+        *ngIf="showFieldErrors(field)"
+        class="error-message"
+        id="error-description-{{field.id}}"
+        role="alert">
+        <li *ngFor="let error of registerForm.controls[field.id].errors | appValues">
+          <span *ngIf="error.value === true && itemInObject(error.key, errorMessages)">{{ errorMessages[error.key] }}</span>
+          <span *ngIf="error.value === true && !itemInObject(error.key, errorMessages)">{{ error.key }}</span>
+        </li>
+      </p>
+      <!-- Password help -->
+      <div *ngIf="
+        field.passwordType === 'password'
+        && field.focused
+        && registerForm.controls[field.id].errors"
+        class="help-message"
+        role="alert">
+        <div *ngFor="let error of registerForm.controls[field.id].errors | appValues">
+          <li *ngIf="error.key === 'required'">Should have at least 10 characters</li>
+          <li *ngIf="
+            error.key !== 'required'
+            && error.key !== 'maxlength'
+            && itemInObject(error.key, errorMessages)">{{ errorMessages[error.key] }}</li>
+        </div>
+      </div>
+    </div>
+    <!-- Special buttons -->
+    <div *ngIf="field.type === 'option'" class="form-options {{field.classes}}">
+      <a
+        *ngIf="field.show === true"
+        tabindex="{{tabIndex}}"
+        href="javascript:void(0);"
+        class="btn option"
+        (click)="showGroup(field.group); field.show = false">{{field.name}}</a>
+    </div>
+    <button
+      *ngIf="field.type === 'submit'"
+      type="submit"
+      [disabled]="!registerForm.valid"
+      class="submit btn {{field.classes}}"
+      tabindex="{{tabIndex}}">{{field.text}} <i class="ion-chevron-right"></i></button>
+    <div *ngIf="field.type === 'special'" class="extra-info {{field.classes}}">
+      <a
+        href="javascript:void(0);"
+        tabindex="{{tabIndex}}"
+        (click)="onSpecial(field.value)"
+        class="change-mode">{{field.name}}</a>
+    </div>
+  </div>
+</form>

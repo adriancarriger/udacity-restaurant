@@ -1,0 +1,182 @@
+@import '../../styles/variables';
+form {
+  $itemWidth: 90%;
+  .instructions {
+    width: $itemWidth;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 18px;
+    padding: 30px 0; 
+    &.error {
+      color: red;
+    }
+  }
+  .input-item {
+    position: relative;
+    width: $itemWidth;
+    margin: 0 auto;
+    margin-bottom: 30px;
+    min-height: 47.44px;
+    label {
+      position: absolute;
+      top: 12px;
+      left: 10.219px;
+      color: #adadad;
+      font-weight: normal;
+      font-size: 18px;
+      background: white;
+      z-index: 1000;
+      transition: all 0.15s;
+      margin: 0;
+      padding: 0 5px;
+      margin-left: -5px;
+      // Make label appear to not affect cursor
+      cursor: text;
+      &:after {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        top: 50%;
+        content: "";
+        cursor: text;
+      }
+      &.select-box {
+        cursor: pointer;
+        &:after {
+          cursor: pointer;
+        }
+      }
+    }
+    input, textarea, select {
+      display: block;
+      font-size: 18px;
+      border-style: solid;
+      border-color: $lightGray;
+      border-width: 1px;
+      padding: 10.219px;
+      width: 100% !important; // !important prevents textarea width resizing 
+      box-shadow: none;
+    }
+    .select-container {
+      height: 47.44px;
+    }
+    select {
+      height: 47.44px;
+      background-color: white;
+      border-radius: 0px;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      background-position: 98% 50%;
+      background-repeat: no-repeat;
+      background-image: url('assets/ios-down-arrow.svg');
+      background-size: 30px;
+      position: absolute;
+      z-index: 999;
+      background-color: transparent;
+      cursor: pointer;
+      &::-ms-expand{
+        display:none;
+      }
+    }
+    .error-message {
+      background-color: #f2dede;
+      color: #b15655;
+      font-size: 18px;
+      padding: 12px 20px;
+    }
+    .help-message {
+      background-color: #def2de;
+      color: #55b156;
+      font-size: 18px;
+      padding: 12px 20px;
+    }
+    @media (max-width: 500px) {
+      .error-message, .help-message span {
+        margin-left: -15px;
+      }
+    }
+    &:not(.active-item) {
+      input, select {
+        color: white;
+      }
+    }
+    &.active-item {
+      label {
+        transition: transform 0.2s;
+        transform: translateY(-100%);
+        cursor: default;
+        z-index: 1000;
+      }
+    }
+  }
+  // Date Group
+  .group-label {
+    text-align: left;
+    padding: 10px 0;
+    padding-left: 2%;
+    clear: both;
+  }
+  .left-input, .right-input {
+    width: 43%;
+    float: left;
+    list-style: none;
+  }
+  .left-input {
+    margin-left: 5%;
+  }
+  .right-input {
+    margin-left: 4%;
+  }
+  .submit.btn {
+    background-color: $primaryColor;
+    width: $itemWidth;
+    color: white;
+    display: block;
+    margin: 30px auto;
+    height: 60px;
+    color: white;
+    font-size: 30px;
+    i {
+      font-size: 23px;
+      margin-bottom: 10px;
+    }
+    &[disabled] {
+      opacity: 0.6;
+    }
+  }
+  @media (max-width: 500px) {
+    .left-input, .right-input {
+      width: 90%;
+      float: initial;
+      margin-left: initial;
+      margin: 0px auto;
+      margin-bottom: 20px;
+    }
+    .submit.btn {
+      font-size: 20px;
+    }
+  }
+  .form-options {
+    width: $itemWidth;
+    margin: 0 auto;
+    .option {
+      box-shadow: none;
+      &:first-of-type {
+        padding-left: 0;
+      }
+    }
+  }
+  .extra-info {
+    width: 100%;
+    text-align: center;
+    margin: 30px 0;
+    a {
+      color: gray;
+    }
+    a, a:hover, a:active {
+      cursor: pointer;
+      text-decoration: none;
+    }
+  }
+}

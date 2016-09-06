@@ -1,0 +1,17 @@
+<div class="select-container">
+  <select
+    id="{{field.id}}"
+    [formControl]="control"
+    [attr.required]="field.required ? true :  null"
+    [attr.aria-label]="field.ariaLabel"
+    [attr.aria-invalid]="showFieldErrors"
+    [attr.aria-describedby]="'error-description-' + field.id"
+    (change)="field.length = onInput($event);"
+    (focus)="field.focused = true;"
+    (blur)="field.focused = false"
+    tabindex="{{tabIndex}}">
+    <option
+      *ngFor="let item of items"
+      value="{{item}}">{{item}}</option>
+  </select>
+</div>

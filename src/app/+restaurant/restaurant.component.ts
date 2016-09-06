@@ -27,11 +27,11 @@ export class RestaurantComponent implements OnInit {
         {
           name: 'Comments',
           type: 'textarea',
-          control: ['']
+          control: ['', Validators.required]
         },
         {
           type: 'submit',
-          text: 'Next'
+          text: 'Add Review'
         }
       ]
     }
