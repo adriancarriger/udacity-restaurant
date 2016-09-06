@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PaginatePipe, PaginationService } from 'ng2-pagination';
+import { PaginatePipe, PaginationService, PaginationControlsCmp } from 'ng2-pagination';
 
 import { SharedModule } from '../shared/shared.module';
 import { HomeComponent } from './home.component';
@@ -14,6 +14,7 @@ import { SearchPipe } from './search/search.pipe';
     HomeComponent,
     PaginationComponent,
     StickyScrollDirective,
+    PaginationControlsCmp,
     PaginatePipe,
     SearchPipe
   ],

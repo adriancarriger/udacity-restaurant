@@ -1,12 +1,11 @@
-import { Component, ViewEncapsulation, Input, Output, EventEmitter } from '@angular/core';
-import { PaginationControlsCmp } from 'ng2-pagination';
+import { Component, Input, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
+
 
 @Component({
-  encapsulation: ViewEncapsulation.None,
   selector: 'app-pagination',
   templateUrl: 'pagination.component.html',
   styleUrls: ['pagination.component.scss'],
-  directives: [PaginationControlsCmp]
+  encapsulation: ViewEncapsulation.None,
 })
 export class PaginationComponent {
   @Input() config;

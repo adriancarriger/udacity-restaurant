@@ -1,0 +1,49 @@
+@import '../styles/variables';
+.header {
+  padding-top: 50px;
+  .image {
+    float: left;
+    width: 40%;
+    height: 0;
+    padding-bottom: 50%;
+  }
+  .restaurant-meta {
+    float: left;
+    padding: 20px;
+    padding-top: 0;
+    width: 60%;
+    .meta-item {
+      padding: 5px;
+    }
+  }
+}
+.reviews {
+  padding-top: 40px;
+  h2 {
+    text-align: center;
+    padding: 10px;
+    margin-bottom: 0;
+    border-bottom: solid $lightGray 1px;
+  }
+  .review {
+    border-bottom: solid 1px $lightGray;
+    padding: 20px 0;
+  }
+  .read-more {
+    margin: 10px auto;
+    display: block;
+    font-size: 18px;
+    &:before {
+      position: absolute;
+      bottom: -15px;
+      left: 0;
+      right: 0;
+      font-size: 25px;
+    }
+  }
+}
+.leave-a-review {
+  h2 {
+    text-align: center;
+  }
+}

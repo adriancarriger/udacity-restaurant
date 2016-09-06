@@ -1,9 +1,17 @@
 <div class="header container">
-  <div class="image">
-  </div>
+  <app-cropped-image
+    [src]="places.placesMeta[restaurantId]?.photo"
+    class="image"></app-cropped-image>
   <div class="restaurant-meta">
+    <app-star-view
+      [percentage]="(places.placesMeta[restaurantId]?.rating / 5) * 100"
+      class="rating"></app-star-view>
     <div class="meta-item">{{places.placesMeta[restaurantId]?.name}}</div>
+    <div class="meta-item">{{places.placesMeta[restaurantId]?.phone}}</div>
     <div class="meta-item">{{places.placesMeta[restaurantId]?.vicinity}}</div>
+    <div class="meta-item">
+      <a tabindex="10" href="{{places.placesMeta[restaurantId]?.website}}" target="_blank">Website</a>
+    </div>
     <div class="meta-item">
       <div *ngFor="let hoursString of places.placesMeta[restaurantId]?.hours" class="restaurant-hours">
         {{hoursString}}
@@ -17,14 +25,18 @@
   <div
     *ngFor="let review of places.placesMeta[restaurantId]?.reviews"
     class="review">
-    <div class="star-rating">Rating: {{review.rating}}</div>
-    <div class="review-text">Text: {{review.text}}</div>
-    <div class="review-author">Author: {{review.author_name}}</div>
-    <div class="review-time">Time: {{review.time}}</div>
+    <app-star-view
+      [percentage]="(review.rating / 5) * 100"
+      class="meta-item rating"></app-star-view>
+    <div class="review-text">"{{review.text}}"</div>
+    <div class="review-author">{{review.author_name}}</div>
+    <div class="review-date">{{review.time | amFromUnix | amDateFormat:'M/D/YY'}}</div>
   </div>
+  <button
+    (click)="showMore = true"
+    [ngClass]="{'hidden': showMore}"
+    class="read-more btn ion-ios-arrow-down">read more</button>
 </div>
 <div class="leave-a-review container">
   <h2>Leave a Review</h2>
-  <div class="rating-input"></div>
-  form inputs...
 </div>
