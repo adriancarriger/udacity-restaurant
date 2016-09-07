@@ -8,9 +8,9 @@ html, body {
   min-height: 100%;
   .content-container {
     display: block;
-    padding-bottom: $defaultFooterHeight + 40px;
+    padding-bottom: $defaultFooterHeight + 20px;
     @media (max-width: 500px) {
-      padding-bottom: $defaultFooterHeight + 40px + 170px;
+      padding-bottom: $defaultFooterHeight + 20px + 170px;
     }
   }
   app-footer {
@@ -28,6 +28,39 @@ html, body {
     display: none;
     &.not-collapsed {
       display: block;
+    }
+  }
+}
+
+// Forms
+.form form {
+  background-color: $formColor;
+  .input-item {
+    input, select, textarea, label {
+      color: white;
+      background-color: $formColor;
+      border-color: white;
+      border-width: 3px;
+      &:focus {
+        outline: none;
+        border-color: $formFocus;
+      }
+    }
+    .error-message {
+      background-color: $formFocus;
+      color: white;
+    }
+  }
+  button {
+    border-color: white;
+    border-width: 3px;
+    &:active {
+      color: $formColor;
+      background-color: white;
+    }
+    &:focus {
+      outline: none;
+      border-color: $formFocus;
     }
   }
 }

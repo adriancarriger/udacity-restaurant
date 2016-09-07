@@ -22,26 +22,30 @@
 </div>
 <div class="reviews container">
   <h2>reviews</h2>
-  <div
-    *ngFor="let review of places.placesMeta[restaurantId]?.reviews"
-    class="review">
-    <app-star-view
-      [percentage]="(review.rating / 5) * 100"
-      class="meta-item rating"></app-star-view>
-    <div class="review-text">"{{review.text}}"</div>
-    <div class="review-author">{{review.author_name}}</div>
-    <div class="review-date">{{review.time | amFromUnix | amDateFormat:'M/D/YY'}}</div>
+  <div [ngClass]="{'open': showMore}" class="review-drawer">
+    <div
+      *ngFor="let review of places.placesMeta[restaurantId]?.reviews"
+      class="review">
+      <app-star-view
+        [percentage]="(review.rating / 5) * 100"
+        class="meta-item rating"></app-star-view>
+      <div class="review-text">"{{review.text}}"</div>
+      <div class="review-author">{{review.author_name}}</div>
+      <div class="review-date">{{review.time | amFromUnix | amDateFormat:'M/D/YY'}}</div>
+    </div>
   </div>
+  
   <button
     (click)="showMore = true"
     [ngClass]="{'hidden': showMore}"
-    class="read-more btn ion-ios-arrow-down">read more</button>
+    class="read-more btn ion-ios-arrow-down" tabindex="10">read more</button>
 </div>
-<div class="leave-a-review container">
-  <h2>Leave a Review</h2>
+<div class="leave-a-review">
+  <h2>Leave A Review</h2>
   <app-form
     [allFormInfo]="formInfo"
     [modeInit]="'review'"
     [tabIndex]="10"
-    (formComplete)="onSubmit($event)"></app-form>
+    (formComplete)="onSubmit($event)"
+    class="form"></app-form>
 </div>

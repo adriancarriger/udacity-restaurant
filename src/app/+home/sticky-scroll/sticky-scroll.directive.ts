@@ -1,4 +1,12 @@
-import { Directive, ElementRef, Input, Renderer, OnInit, AfterViewInit } from '@angular/core';
+import {
+  Directive,
+  ElementRef,
+  Input,
+  Renderer,
+  OnInit,
+  AfterViewInit,
+  OnDestroy
+} from '@angular/core';
 
 import { GlobalEventsService } from '../../shared/index';
 
@@ -11,25 +19,38 @@ import { GlobalEventsService } from '../../shared/index';
     '[style.z-index]': '10'
   }
 })
-export class StickyScrollDirective implements OnInit, AfterViewInit {
+export class StickyScrollDirective implements OnInit, AfterViewInit, OnDestroy {
   private fixed: boolean = false;
   private minScroll: number;
+  private subscriptions = {
+    resize: null,
+    scroll: null
+  };
   constructor(
     private globalEventsService: GlobalEventsService,
     private element: ElementRef,
     private renderer: Renderer) { }
 
   public ngOnInit(): void {
-    this.globalEventsService.elementsCollection.resize.emitter$.subscribe(data => {
+    this.subscriptions.resize = this.globalEventsService.elementsCollection.resize.emitter$.subscribe(data => {
       this.getDimensions();
     });
-    this.globalEventsService.elementsCollection.scroll.emitter$.subscribe( () => {
+    this.subscriptions.scroll = this.globalEventsService.elementsCollection.scroll.emitter$.subscribe( () => {
       this.updatePosition();
     });
   }
 
-  public ngAfterViewInit() {
+  public ngAfterViewInit(): void {
     this.getDimensions();
+  }
+
+  public ngOnDestroy(): void {
+    this.subscriptions.resize.unsubscribe();
+    this.subscriptions.scroll.unsubscribe();
+    if (this.fixed) {
+      this.removeSticky();
+      this.fixed = false;
+    }
   }
 
   /**
