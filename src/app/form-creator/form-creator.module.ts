@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { TextboxComponent } from './textbox/index';
 import { SelectComponent } from './select/index';
+import { RatingInputComponent } from './rating-input/index';
 import { FormComponent } from './form/index';
 import { ValuesPipe } from './values/values.pipe';
 
@@ -20,6 +21,7 @@ import { ValuesPipe } from './values/values.pipe';
   declarations: [
     TextboxComponent,
     SelectComponent,
+    RatingInputComponent,
     FormComponent,
     ValuesPipe
   ],

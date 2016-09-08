@@ -68,7 +68,7 @@ export class FormComponent implements OnInit {
     'birthday': 'bday'
   };
   public inputTypes = ['input', 'select', 'textarea'];
-  public otherTypes = ['option', 'submit', 'special', 'instructions'];
+  public otherTypes = ['option', 'submit', 'special', 'instructions', 'rating'];
 
   constructor(
     private renderer: Renderer,
@@ -84,6 +84,8 @@ export class FormComponent implements OnInit {
   }
 
   public reset(): Promise<string> {
+    // TODO: add offical reset option (added in rc5)
+    // http://stackoverflow.com/a/34742076/5357459
     // Angular 2 workaround (as of 2.0.0-rc.4)
     // https://angular.io/docs/ts/latest/guide/forms.html
     this.active = false;

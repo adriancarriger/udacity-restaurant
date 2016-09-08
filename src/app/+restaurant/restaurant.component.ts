@@ -18,11 +18,16 @@ export class RestaurantComponent implements OnInit {
       instructions: '',
       fields: [
         {
+          name: 'Rating',
+          type: 'rating',
+          hideLabel: true,
+          control: ['', Validators.required]
+        },
+        {
           name: 'Name',
           type: 'input',
           inputType: 'text',
-          control: ['', Validators.required],
-          mode: 'signup'
+          control: ['', Validators.required]
         },
         {
           name: 'Comments',

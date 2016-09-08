@@ -1,0 +1,42 @@
+:host {
+  $fontSize: 60px;
+  margin: 20px auto;
+  display: block;
+  font-size: $fontSize;
+  unicode-bidi: bidi-override;
+  direction: rtl;
+  width: 5.1em;
+  height: 1.5em;
+  input {
+    position: absolute;
+    left: -999999px;
+  }
+  label {
+    display: inline-block;
+    font-size: 0;
+    &:before {
+      position: relative;
+      font: $fontSize/1 FontAwesome;
+      display: block;
+      content: "★";
+      color: #ccc;
+      height: 1.5em;
+      background: -webkit-linear-gradient(-45deg, #d9d9d9 0%, #b3b3b3 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    // &:hover:before,
+    // &:hover ~ label:before,
+    &.selected:before,
+    &.selected ~ label:before {
+      color: #f0ad4e;
+      background: -webkit-linear-gradient(-45deg, #fcb551 0%, #d69a45 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    &.focus:before {
+      // border: 1px solid white;
+    }
+  }
+}
+

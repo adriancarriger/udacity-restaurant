@@ -9,12 +9,14 @@
     <div *ngIf="field.type === 'instructions' && field.show === true" class="instructions {{field.classes}}">
       {{field.message}}
     </div>
+    
     <!-- Input Items -->
     <div
       *ngIf="isAnInputType(field.type) && field.show === true"
       [ngClass]="{'active-item': field.length > 0 || field.focused === true || field.inputType === 'file'}"
       class="input-item {{field.classes}}">
       <label
+        *ngIf="field.hideLabel !== true"
         attr.for="{{field.id}}">{{field.name}}</label>
       <!-- Input -->
       <app-textbox
@@ -77,6 +79,11 @@
         </div>
       </div>
     </div>
+    <!-- Rating Input -->
+    <app-rating-input
+      *ngIf="field.type === 'rating'"
+      [field]="field"
+      [tabIndex]="tabIndex"></app-rating-input>
     <!-- Special buttons -->
     <div *ngIf="field.type === 'option'" class="form-options {{field.classes}}">
       <a
