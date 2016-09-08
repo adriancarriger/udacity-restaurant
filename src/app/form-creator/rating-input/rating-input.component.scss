@@ -1,23 +1,25 @@
+@import '../../styles/variables';
 :host {
   $fontSize: 60px;
   margin: 20px auto;
+  margin-bottom: 0;
   display: block;
   font-size: $fontSize;
   unicode-bidi: bidi-override;
   direction: rtl;
   width: 6.3em;
-  height: 1.5em;
+  height: 1.3em;
   input {
     position: absolute;
     left: -999999px;
     &:focus + label .star {
-      background-color: white;
+      background-color: $formFocus;
+      text-shadow: 0px 0px 7px $formFocus;
     }
   }
   label {
     display: inline-block;
     font-size: 0;
-    // border: solid 1px transparent;
     .star {
       position: relative;
       font: $fontSize/1 FontAwesome;
@@ -28,7 +30,7 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       &:before {
-        $smaller: 10px;
+        $smaller: 12px;
         position: absolute;
         top: 0;
         right: $smaller / 2;
@@ -41,21 +43,18 @@
         content: "★";
         color: #ccc;
         height: 1.5em;
-        background-color: white;
+        $defaultColor: gray;
+        background-color: $defaultColor;
+        text-shadow: 0px 0px 0px $defaultColor;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
       }
     }
     &.selected .star:before,
     &.selected ~ label .star:before {
-      background-color: #f0ad4e;
+      $selectedColor: #f0ad4e;
+      background-color: $selectedColor;
+      text-shadow: 0px 0px 0px $selectedColor;
     }
-  }
-  .hidden-input {
-    //display: none;
-    bottom: 0;
-    left: 0;
-    font-size: 90px;
-    z-index: 9999999;
   }
 }

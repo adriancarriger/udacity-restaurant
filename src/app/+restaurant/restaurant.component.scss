@@ -45,14 +45,14 @@
     &:before {
       position: absolute;
       bottom: -15px;
-      left: 0;
+      left: -1px;
       right: 0;
       font-size: 25px;
+      width: calc(100% + 2px);
     }
   }
 }
 .leave-a-review {
   padding: 6% 10%;
   margin-top: 50px;
-  background-color: $formColor;
 }

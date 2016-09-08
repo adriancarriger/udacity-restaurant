@@ -66,8 +66,8 @@ export class FormComponent implements OnInit {
     'country': 'country',
     'birthday': 'bday'
   };
-  public inputTypes = ['input', 'select', 'textarea'];
-  public otherTypes = ['option', 'submit', 'special', 'instructions', 'rating'];
+  public inputTypes = ['input', 'select', 'textarea', 'rating'];
+  public otherTypes = ['option', 'submit', 'special', 'instructions'];
 
   constructor(
     private renderer: Renderer,
@@ -121,7 +121,8 @@ export class FormComponent implements OnInit {
   public showFieldErrors(field): boolean {
     if (!this.registerForm.pristine
       && (this.registerForm.controls[field.id].touched
-        || (field.inputType === 'file' && !this.registerForm.controls[field.id].pristine))
+        || (field.inputType === 'file' && !this.registerForm.controls[field.id].pristine)
+        || field.type === 'rating')
       && this.registerForm.controls[field.id].errors
       && (field.passwordType !== 'password' || field.focused === false)) {
       return true;

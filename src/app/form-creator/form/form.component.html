@@ -13,7 +13,8 @@
     <!-- Input Items -->
     <div
       *ngIf="isAnInputType(field.type) && field.show === true"
-      [ngClass]="{'active-item': field.length > 0 || field.focused === true || field.inputType === 'file'}"
+      [ngClass]="{'active-item': field.length > 0 || field.focused === true || field.inputType === 'file',
+      'special': field.type === 'rating'}"
       class="input-item {{field.classes}}">
       <label
         *ngIf="field.hideLabel !== true"
@@ -52,6 +53,12 @@
         (focus)="field.focused = true"
         (blur)="field.focused = false">
       </app-select>
+      <!-- Rating Input -->
+      <app-rating-input
+        *ngIf="field.type === 'rating'"
+        [field]="field"
+        (updateValue)="updateValue($event)"
+        [tabIndex]="tabIndex"></app-rating-input>
       <!-- Validation errors -->
       <p
         *ngIf="showFieldErrors(field)"
@@ -79,12 +86,6 @@
         </div>
       </div>
     </div>
-    <!-- Rating Input -->
-    <app-rating-input
-      *ngIf="field.type === 'rating'"
-      [field]="field"
-      (updateValue)="updateValue($event)"
-      [tabIndex]="tabIndex"></app-rating-input>
     <!-- Special buttons -->
     <div *ngIf="field.type === 'option'" class="form-options {{field.classes}}">
       <a

@@ -34,38 +34,17 @@ html, body {
 
 // Forms
 .form form {
-  background-color: $formColor;
+  
   .instructions {
     font-size: 30px;
-    color: white;
     padding-bottom: 0;
   }
-  .input-item {
-    input, select, textarea, label {
-      color: white;
-      background-color: $formColor;
-      border-color: white;
-      border-width: 3px;
-      &:focus {
-        outline: none;
-        border-color: $formFocus;
-      }
-    }
-    .error-message {
-      background-color: $formFocus;
-      color: white;
-    }
-  }
-  button {
-    border-color: white;
-    border-width: 3px;
-    &:active {
-      color: $formColor;
-      background-color: white;
-    }
-    &:focus {
-      outline: none;
-      border-color: $formFocus;
-    }
-  }
+}
+
+// Focus outline :default
+input, textarea, select, button, a, a:active, a:hover, a:focus,
+// Bootstrap
+.btn, .btn:active .btn.active.focus, .btn.active:focus,
+.btn.focus, .btn:active.focus, .btn:active:focus, .btn:focus {
+  outline-color: $formFocus;
 }
