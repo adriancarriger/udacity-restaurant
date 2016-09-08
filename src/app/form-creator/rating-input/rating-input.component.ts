@@ -1,5 +1,5 @@
 // Thanks!: https://codepen.io/chrisdpratt/pen/dmyne
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-rating-input',
@@ -9,6 +9,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class RatingInputComponent implements OnInit {
   @Input() field;
   @Input() tabIndex: number;
+  @Output() updateValue = new EventEmitter();
   public ratings: Array<number> = [];
   public displayValue: number;
   private value: number;
@@ -23,6 +24,9 @@ export class RatingInputComponent implements OnInit {
   public onChange(rating): void {
     this.value = rating;
     this.displayValue = rating;
+    let update = {};
+    update[this.field.id] = this.value;
+    this.updateValue.emit(update);
   }
 
   public onMouseenter(rating): void {

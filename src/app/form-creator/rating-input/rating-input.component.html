@@ -1,9 +1,4 @@
-<label
-  *ngFor="let rating of ratings"
-  [ngClass]="{'selected': rating === displayValue, 'focus': rating === value}"
-  (mouseenter)="onMouseenter(rating)"
-  (mouseout)="onMouseout(rating)"
-  [attr.for]="field.id + '-' + rating">
+<template ngFor let-rating [ngForOf]="ratings">
   <input
     (change)="onChange(rating)"
     [attr.id]="field.id + '-' + rating"
@@ -11,5 +6,12 @@
     type="radio"
     value="{{rating}}"
     tabindex="{{tabIndex}}"
-    title="{{rating}} stars"> {{rating}}
-</label>
+    title="{{rating}} stars">
+  <label
+    [ngClass]="{'selected': rating === displayValue}"
+    (mouseenter)="onMouseenter(rating)"
+    (mouseout)="onMouseout(rating)"
+    [attr.for]="field.id + '-' + rating">
+    <span class="star">★</span> {{rating}}
+  </label>
+</template>

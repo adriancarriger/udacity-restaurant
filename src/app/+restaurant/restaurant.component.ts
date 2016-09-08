@@ -15,7 +15,7 @@ export class RestaurantComponent implements OnInit {
   public formInfo: any = {
     review: {
       title: '',
-      instructions: '',
+      instructions: 'Leave A Review',
       fields: [
         {
           name: 'Rating',

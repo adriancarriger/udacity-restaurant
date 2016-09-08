@@ -143,7 +143,7 @@ export class PlacesService {
               }
               if (this.queriesComplete()) {
                 this.defaultSort();
-                this.getDetails(service);
+                // this.getDetails(service); // testing
               }
             });
             this.applicationRef.tick() ;

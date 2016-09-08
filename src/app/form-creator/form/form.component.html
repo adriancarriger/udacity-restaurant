@@ -1,6 +1,6 @@
 <form *ngIf="active" [formGroup]="registerForm" (submit)="formSubmit()" autocomplete="on">
   <!-- Form Instructions -->
-  <div class="instructions">{{formInfo.instructions}}</div>
+  <div *ngIf="formInfo.instructions" class="instructions">{{formInfo.instructions}}</div>
   <div *ngIf="formErrorMessage" class="instructions error">
     {{formErrorMessage}}
   </div>
@@ -83,6 +83,7 @@
     <app-rating-input
       *ngIf="field.type === 'rating'"
       [field]="field"
+      (updateValue)="updateValue($event)"
       [tabIndex]="tabIndex"></app-rating-input>
     <!-- Special buttons -->
     <div *ngIf="field.type === 'option'" class="form-options {{field.classes}}">

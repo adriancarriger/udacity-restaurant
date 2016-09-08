@@ -12,8 +12,7 @@ import {
   Renderer,
   ChangeDetectorRef
 } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
-import { FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { ValidationService } from '../validation/validation.service';
 
 import { Validators } from '@angular/forms';
@@ -73,7 +72,7 @@ export class FormComponent implements OnInit {
   constructor(
     private renderer: Renderer,
     private formBuilder: FormBuilder,
-    private ref: ChangeDetectorRef) {}
+    private ref: ChangeDetectorRef) { }
 
   public ngOnInit(): void {
     this.setFormComponenetId();
@@ -97,6 +96,14 @@ export class FormComponent implements OnInit {
         setTimeout(resolve, 0);
       }, 0);
     });
+  }
+
+  /**
+   * Updates the control for a form element
+   * http://stackoverflow.com/a/39024326/5357459
+   */
+  public updateValue(value): void {
+    this.registerForm.patchValue(value);
   }
 
   public itemInObject(item, object): boolean {

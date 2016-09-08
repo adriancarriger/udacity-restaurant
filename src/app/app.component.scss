@@ -35,6 +35,11 @@ html, body {
 // Forms
 .form form {
   background-color: $formColor;
+  .instructions {
+    font-size: 30px;
+    color: white;
+    padding-bottom: 0;
+  }
   .input-item {
     input, select, textarea, label {
       color: white;
