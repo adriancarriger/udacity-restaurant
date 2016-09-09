@@ -39,6 +39,9 @@ html, body {
     font-size: 30px;
     padding-bottom: 0;
   }
+  .submit.btn[disabled] {
+    opacity: 0.2;
+  }
 }
 
 // Focus outline :default

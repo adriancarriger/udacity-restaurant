@@ -1,10 +1,13 @@
 @import '../../styles/variables';
+$largeFont: 60px;
+$medFont: 40px;
+$smallFont: 30px;
+$innerStarDiff: 12px;
 :host {
-  $fontSize: 60px;
   margin: 20px auto;
   margin-bottom: 0;
   display: block;
-  font-size: $fontSize;
+  font-size: $largeFont;
   unicode-bidi: bidi-override;
   direction: rtl;
   width: 6.3em;
@@ -22,7 +25,7 @@
     font-size: 0;
     .star {
       position: relative;
-      font: $fontSize/1 FontAwesome;
+      font: $largeFont/1 FontAwesome;
       display: block;
       color: #ccc;
       height: 1.5em;
@@ -30,15 +33,14 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       &:before {
-        $smaller: 12px;
         position: absolute;
         top: 0;
-        right: $smaller / 2;
+        right: $innerStarDiff / 2;
         bottom: 0;
         left: 0;
         margin: auto;
 
-        font: ($fontSize - $smaller)/1 FontAwesome;
+        font: ($largeFont - $innerStarDiff)/1 FontAwesome;
         display: block;
         content: "★";
         color: #ccc;
@@ -55,6 +57,26 @@
       $selectedColor: #f0ad4e;
       background-color: $selectedColor;
       text-shadow: 0px 0px 0px $selectedColor;
+    }
+  }
+  @media (min-width: 381px) and (max-width: 600px) {
+    font-size: $medFont;
+    label .star {
+      font-size: $medFont;
+      &:before {
+        font: ($medFont - $innerStarDiff)/1 FontAwesome;
+      }
+    }
+  }
+  @media (max-width: 380px) {
+    font-size: $smallFont;
+    label .star {
+      font-size: $smallFont;
+      &:before {
+        font: ($smallFont - 8px)/1 FontAwesome;
+        top: 2px;
+        right: 4px;
+      }
     }
   }
 }

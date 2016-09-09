@@ -7,12 +7,11 @@
   width: 124px;
   position: relative;
   padding: 0;
-  
+  z-index: -1;
   &-top {
     color: #ffb500;
     padding: 0;
     position: absolute;
-    z-index: 1;
     display: block;
     top: 0;
     left: 0;
@@ -21,6 +20,5 @@
   &-bottom {
     padding: 0;
     display: block;
-    z-index: 0;
   }
 }
