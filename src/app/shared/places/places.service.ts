@@ -166,7 +166,7 @@ export class PlacesService {
                         typesArray: [query],
                         types: '',
                         vicinity: '',
-                        website: null
+                        website: ''
                       }
                       if (this.requestedPlace !== undefined && this.requestedPlace === id) {
                         this.getPlaceDetails(id, service);
@@ -178,7 +178,7 @@ export class PlacesService {
               }
               if (this.queriesComplete()) {
                 this.defaultSort();
-                // this.getDetails(service); // testing
+                this.getDetails(service);
               }
             });
             this.applicationRef.tick() ;

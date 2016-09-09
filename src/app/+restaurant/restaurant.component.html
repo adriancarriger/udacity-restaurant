@@ -9,7 +9,7 @@
     <h1 class="meta-item title">{{places.placesMeta[restaurantId]?.name}}</h1>
     <div class="meta-item">{{places.placesMeta[restaurantId]?.phone}}</div>
     <div class="meta-item">{{places.placesMeta[restaurantId]?.vicinity}}</div>
-    <div class="meta-item">
+    <div *ngIf="places.placesMeta[restaurantId]?.website" class="meta-item">
       <a tabindex="10" href="{{places.placesMeta[restaurantId]?.website}}" target="_blank">Website</a>
     </div>
     <div class="meta-item">
