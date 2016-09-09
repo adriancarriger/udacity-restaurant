@@ -33,12 +33,13 @@
       <div class="review-author">{{review.author_name}}</div>
       <div class="review-date">{{review.time | amFromUnix | amDateFormat:'M/D/YY'}}</div>
     </div>
+    <div [ngClass]="{'fadeout': !showMore}"></div>
   </div>
-  
   <button
     (click)="showMore = true"
     [ngClass]="{'hidden': showMore}"
-    class="read-more btn ion-ios-arrow-down" tabindex="10">read more</button>
+    class="read-more btn ion-ios-arrow-down"
+    tabindex="10">read more</button>
 </div>
 <div class="leave-a-review">
   <app-form
