@@ -178,7 +178,7 @@ export class PlacesService {
               }
               if (this.queriesComplete()) {
                 this.defaultSort();
-                // this.getDetails(service); // testing
+                this.getDetails(service);
               }
             });
             this.applicationRef.tick() ;

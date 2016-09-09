@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Validators } from '@angular/forms';
 
@@ -9,7 +9,7 @@ import { PlacesService } from '../shared/index';
   templateUrl: './restaurant.component.html',
   styleUrls: ['./restaurant.component.scss']
 })
-export class RestaurantComponent implements OnInit {
+export class RestaurantComponent implements OnInit, OnDestroy {
   @ViewChild('reviewForm') reviewForm;
   public restaurantId: string;
   public showMore: boolean = false;
@@ -51,6 +51,10 @@ export class RestaurantComponent implements OnInit {
   ngOnInit() {
     this.restaurantId = this.activatedRoute.snapshot.url[1].path;
     this.places.requestPlace( this.restaurantId );
+  }
+
+  ngOnDestroy() {
+    this.reviewSubmitted = false;
   }
 
 }
