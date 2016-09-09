@@ -61,6 +61,42 @@ export class PlacesService {
   }
 
   /**
+   * Add review locally (does not post to server)
+   */
+  public addReview(id: string, review): void {
+    this.placesMeta[id].reviews.unshift({
+      author_name: review.name,
+      rating: review.rating,
+      text: review.comments,
+      time: Math.floor(Date.now() / 1000)
+    });
+    this.updateAverage(id);
+  }
+
+  /**
+   * This doesn't return the true average
+   * because the Google Maps Api only Returns
+   * 5 reviews and it doesn't allow adding a
+   * review through the api
+   */
+  private updateAverage(id: string): void {
+    let reviews = this.placesMeta[id].reviews;
+    let total = 0;
+    for (let i = 0; i < reviews.length; i++) {
+      total += reviews[i].rating;
+    }
+    /**
+     * Assume there are between 5 to 100 more
+     * reviews that average the current average
+     */
+    let additionalReviews = Math.floor(Math.random() * 96) + 5;
+    total += this.placesMeta[id].rating * additionalReviews;
+    // Calculate average
+    this.placesMeta[id].rating = total / (reviews.length + 1 + additionalReviews);
+    console.log('after: ' + this.placesMeta[id].rating);
+  }
+
+  /**
    * Returns an Observable for the HTTP GET request for the JSON resource.
    * @return {any} The Observable for the HTTP request.
    */
@@ -143,7 +179,7 @@ export class PlacesService {
               }
               if (this.queriesComplete()) {
                 this.defaultSort();
-                // this.getDetails(service); // testing
+                this.getDetails(service);
               }
             });
             this.applicationRef.tick() ;

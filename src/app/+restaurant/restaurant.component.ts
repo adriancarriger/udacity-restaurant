@@ -12,6 +12,7 @@ import { PlacesService } from '../shared/index';
 export class RestaurantComponent implements OnInit {
   public restaurantId: string;
   public showMore: boolean = false;
+  public reviewSubmitted: boolean = false;
   public formInfo: any = {
     review: {
       title: '',
@@ -47,10 +48,6 @@ export class RestaurantComponent implements OnInit {
   ngOnInit() {
     this.restaurantId = this.activatedRoute.snapshot.url[1].path;
     this.places.requestPlace( this.restaurantId );
-  }
-
-  onSubmit(event) {
-    console.log('form submitted', event);
   }
 
 }

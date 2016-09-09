@@ -42,9 +42,13 @@
 </div>
 <div class="leave-a-review">
   <app-form
+    *ngIf="!reviewSubmitted"
     [allFormInfo]="formInfo"
     [modeInit]="'review'"
     [tabIndex]="10"
-    (formComplete)="onSubmit($event)"
+    (formComplete)="places.addReview(restaurantId, $event); reviewSubmitted = true;"
     class="form"></app-form>
+  <div *ngIf="reviewSubmitted">
+    <h2 class="thank-you">Thank you for your review</h2>
+  </div>
 </div>

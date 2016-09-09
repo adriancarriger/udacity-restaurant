@@ -9,6 +9,9 @@ html, body {
   .content-container {
     display: block;
     padding-bottom: $defaultFooterHeight + 20px;
+    h1, h2, h3, h4, h5, h6 {
+      font-weight: 200;
+    }
     @media (max-width: 500px) {
       padding-bottom: $defaultFooterHeight + 20px + 170px;
     }
