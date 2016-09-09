@@ -18,6 +18,11 @@
       </div>
     </div>
     <div class="meta-item">{{places.placesMeta[restaurantId]?.types}}</div>
+    <button
+      pageScroll
+      href="#reviewForm"
+      class="leave-review btn"
+      tabindex="10">Leave a review</button>
   </div>
 </div>
 <div class="reviews container">
@@ -48,6 +53,7 @@
     [modeInit]="'review'"
     [tabIndex]="10"
     (formComplete)="places.addReview(restaurantId, $event); reviewSubmitted = true;"
+    id="reviewForm"
     class="form"></app-form>
   <div *ngIf="reviewSubmitted">
     <h2 class="thank-you">Thank you for your review</h2>
