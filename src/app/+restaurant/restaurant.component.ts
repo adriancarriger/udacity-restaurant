@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Validators } from '@angular/forms';
 
@@ -10,6 +10,7 @@ import { PlacesService } from '../shared/index';
   styleUrls: ['./restaurant.component.scss']
 })
 export class RestaurantComponent implements OnInit {
+  @ViewChild('reviewForm') reviewForm;
   public restaurantId: string;
   public showMore: boolean = false;
   public reviewSubmitted: boolean = false;
@@ -22,7 +23,9 @@ export class RestaurantComponent implements OnInit {
           name: 'Rating',
           type: 'rating',
           hideLabel: true,
-          control: ['', Validators.required]
+          control: ['', Validators.required],
+          maxRating: 5,
+          defaultRating: 5
         },
         {
           name: 'Name',

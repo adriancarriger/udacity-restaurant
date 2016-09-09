@@ -93,7 +93,6 @@ export class PlacesService {
     total += this.placesMeta[id].rating * additionalReviews;
     // Calculate average
     this.placesMeta[id].rating = total / (reviews.length + 1 + additionalReviews);
-    console.log('after: ' + this.placesMeta[id].rating);
   }
 
   /**
@@ -179,7 +178,7 @@ export class PlacesService {
               }
               if (this.queriesComplete()) {
                 this.defaultSort();
-                this.getDetails(service);
+                // this.getDetails(service); // testing
               }
             });
             this.applicationRef.tick() ;

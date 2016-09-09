@@ -6,7 +6,7 @@
     <app-star-view
       [percentage]="(places.placesMeta[restaurantId]?.rating / 5) * 100"
       class="rating"></app-star-view>
-    <div class="meta-item">{{places.placesMeta[restaurantId]?.name}}</div>
+    <h1 class="meta-item title">{{places.placesMeta[restaurantId]?.name}}</h1>
     <div class="meta-item">{{places.placesMeta[restaurantId]?.phone}}</div>
     <div class="meta-item">{{places.placesMeta[restaurantId]?.vicinity}}</div>
     <div class="meta-item">
@@ -20,6 +20,8 @@
     <div class="meta-item">{{places.placesMeta[restaurantId]?.types}}</div>
     <button
       pageScroll
+      [pageScrollDuration]="700"
+      (click)="reviewForm.setFocus(800)"
       href="#reviewForm"
       class="leave-review btn"
       tabindex="10">Leave a review</button>
@@ -49,6 +51,7 @@
 <div class="leave-a-review">
   <app-form
     *ngIf="!reviewSubmitted"
+    #reviewForm
     [allFormInfo]="formInfo"
     [modeInit]="'review'"
     [tabIndex]="10"

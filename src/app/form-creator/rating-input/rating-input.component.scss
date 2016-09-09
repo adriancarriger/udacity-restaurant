@@ -45,7 +45,7 @@ $innerStarDiff: 12px;
         content: "★";
         color: #ccc;
         height: 1.5em;
-        $defaultColor: gray;
+        $defaultColor: #c5c5c5;
         background-color: $defaultColor;
         text-shadow: 0px 0px 0px $defaultColor;
         -webkit-background-clip: text;
@@ -54,7 +54,7 @@ $innerStarDiff: 12px;
     }
     &.selected .star:before,
     &.selected ~ label .star:before {
-      $selectedColor: #f0ad4e;
+      $selectedColor: #ffb500;
       background-color: $selectedColor;
       text-shadow: 0px 0px 0px $selectedColor;
     }

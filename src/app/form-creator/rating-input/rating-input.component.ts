@@ -13,9 +13,12 @@ export class RatingInputComponent implements OnInit {
   public ratings: Array<number> = [];
   public displayValue: number;
   private value: number;
-  private maxRating: number = 5;
+  private maxRating: number;
 
   public ngOnInit(): void {
+    // Set max rating
+    this.maxRating = this.field.maxRating || 5;
+    // Create ratings array
     for (let i = this.maxRating; i >= 1; i--) {
       this.ratings.push(i);
     }

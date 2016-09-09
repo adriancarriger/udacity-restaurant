@@ -136,14 +136,18 @@ export class FormComponent implements OnInit {
     this.focusTimeout = setTimeout( () => { // wait for animation if needed
       let focused = false;
       for (let i = 0; i < this.formInfo.fields.length; i++) {
-        let thisId = this.formInfo.fields[i].id;
+        let field = this.formInfo.fields[i];
+        let thisId = field.id;
+        if (field.type === 'rating') {
+          thisId += '-' + (field.defaultRating || field.maxRating || 1);
+        }
         if (
           // make sure focused wasn't called earlier in the loop
           !focused &&
           // check if the input is currently visible
-          this.formInfo.fields[i].show &&
+          field.show &&
           // check if the input is empty
-          this.formInfo.fields[i].length === 0 &&
+          field.length === 0 &&
           // make sure the input exists
           document.getElementById( thisId ) !== null) {
           // call focus using Angular 2's renderer

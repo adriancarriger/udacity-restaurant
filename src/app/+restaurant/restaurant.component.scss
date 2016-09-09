@@ -14,6 +14,9 @@
     width: 60%;
     .meta-item {
       padding: 5px;
+      &.title {
+        font-size: 22px;
+      }
     }
     .leave-review {
       font-size: 20px;
@@ -69,6 +72,7 @@
     font-size: 18px;
     position: relative;
     background-color: transparent;
+    color: $lightGray;
     &:before {
       position: absolute;
       bottom: -15px;
