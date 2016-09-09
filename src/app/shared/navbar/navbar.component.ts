@@ -16,6 +16,7 @@ export class NavbarComponent implements OnInit {
       if (event instanceof NavigationEnd) {
         this.isCollapsed = true;
         this.homePage = event.url === '/';
+        document.body.scrollTop = 0;
       }
     }, (error: any) => {
       this.isCollapsed = true;

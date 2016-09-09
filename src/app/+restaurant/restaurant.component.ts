@@ -25,7 +25,7 @@ export class RestaurantComponent implements OnInit, OnDestroy {
           hideLabel: true,
           control: ['', Validators.required],
           maxRating: 5,
-          defaultRating: 5
+          defaultRating: 1
         },
         {
           name: 'Name',

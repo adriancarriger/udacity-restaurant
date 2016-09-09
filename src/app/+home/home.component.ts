@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
   public filteredMeta = {count: 0};
   public config: IPaginationInstance = {
       id: 'custom',
-      itemsPerPage: 9,
+      itemsPerPage: 15,
       currentPage: 1
   };
   constructor(public places: PlacesService) { }

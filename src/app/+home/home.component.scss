@@ -1,5 +1,6 @@
 @import '../styles/variables';
 $filterHeight: 55px;
+$smallBreakPoint: 480px;
 .home-container {
   .header {
     width: 100%;
@@ -57,6 +58,15 @@ $filterHeight: 55px;
     .input-item {
       font-size: 18px;
       float: left;
+      &:last-of-type {
+        margin-right: 0;
+      }
+      @media (min-width: 890px) and (max-width: 1060px) {
+        margin-right: 6%;
+      }
+      @media (min-width: 1061px) {
+        margin-right: 10%;
+      }
       select {
         &:focus {
           outline: $whiteOutline;
@@ -140,35 +150,43 @@ $filterHeight: 55px;
     }
   }
   .restaurants {
+    $imageSize: 220px;
     .restaurant {
       width: 100%;
       display: block;
       position: relative;
-      padding: 20px 5%;
+      padding: 20px 10%;
+      @media (min-width: 768px) {
+       padding-left: 30%;
+      }
       border-top: 1px solid lightgray;
       color: gray;
       min-height: 312px;
       .restaurant-image {
-        $imageSize: 220px;
         width: $imageSize;
         height: $imageSize;
         position: absolute;
         top: 0;
         bottom: 0;
-        left: 2%;
+        left: 10%;
         cursor: pointer;
         margin: auto;
         border-radius: 50%;
         overflow: hidden;
-        @media (max-width: 400px) {
-         position: static; 
-        }
-        @media (min-width: 401px) and (max-width: 650px) {
-          width: 40%;
+        @media (max-width: $smallBreakPoint) {
+          position: static;
+          $width: 50%;
+          width: $width;
           height: 0;
-          padding-bottom: 40%;
+          padding-bottom: $width;
         }
-        @media (min-width: 651px) and (max-width: 767px) {
+        @media (min-width: $smallBreakPoint + 1px) and (max-width: 630px) {
+          $width: 35%;
+          width: $width;
+          height: 0;
+          padding-bottom: $width;
+        }
+        @media (min-width: 631px) and (max-width: 767px) {
           left: 6%;
           width: 250px;
           height: 250px; 
@@ -178,12 +196,10 @@ $filterHeight: 55px;
       .restaurant-meta {
         padding: 0 10px;
         padding-top: 50px;
-        margin-left: 212px;
-        @media (max-width: 400px) {
-          margin-left: initial;
+        @media (max-width: $smallBreakPoint) {
           padding-top: 20px;
         }
-        @media (min-width: 401px) and (max-width: 767px) {
+        @media (min-width: $smallBreakPoint + 1px) and (max-width: 767px) {
           margin-left: $contentLeftMobile;
         } 
         .restaurant-name {
@@ -199,7 +215,8 @@ $filterHeight: 55px;
         right: 0;
         bottom: 0;
         margin: auto;
-        width: 26%;
+        margin-right: 10%;
+        width: 150px;
         padding: 0 10px;
         padding-bottom: 30px;
         // https://css-tricks.com/centering-in-the-unknown/
@@ -208,14 +225,35 @@ $filterHeight: 55px;
           display: table-cell;
           vertical-align: middle;
         }
-        @media (max-width: 400px) {
+        @media (max-width: $smallBreakPoint) {
           position: static;
           margin-left: initial;
         }
-        @media (min-width: 401px) and (max-width: 767px) {
+        @media (min-width: $smallBreakPoint + 1px) and (max-width: 767px) {
           position: static;
           margin-left: $contentLeftMobile;
-        } 
+        }
+      }
+      $extraPadding: 40px;
+      @media (min-width: 768px) and (max-width: 1000px) {
+        $sides: 4%;
+        padding-left: calc(#{$sides} + #{$imageSize + $extraPadding});
+        .restaurant-image {
+          left: $sides;
+        }
+        .restaurant-details {
+          margin-right: $sides;
+        }
+      }
+      @media (min-width: 1001px) and (max-width: 1200px) {
+        $sides: 6%;
+        padding-left: calc(#{$sides} + #{$imageSize + $extraPadding});
+        .restaurant-image {
+          left: $sides;
+        }
+        .restaurant-details {
+          margin-right: $sides;
+        }
       }
     }
     .no-results {
