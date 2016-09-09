@@ -25,6 +25,22 @@
       margin-top: 30px;
     }
   }
+  @media (max-width: 767px) {
+    padding-top: 30px;
+    .image {
+      float: initial;
+      width: 80%;
+      margin: auto;
+    }
+    .restaurant-meta  {
+      float: initial;
+      width: 100%;
+      .leave-review {
+        margin: 30px auto;
+        display: block;
+      }
+    }
+  }
 }
 .reviews {
   position: relative;
