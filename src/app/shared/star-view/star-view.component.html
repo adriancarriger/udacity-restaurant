@@ -1,4 +1,8 @@
-<div class="star-ratings-css">
-  <div class="star-ratings-css-top" [style.width]="percentage + '%'"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-  <div class="star-ratings-css-bottom"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+<div class="star-ratings-css" [attr.aria-label]="'star rating of ' + percentage + 'percent'">
+  <div class="star-ratings-css-top" aria-hidden="true" [style.width]="percentage + '%'">
+    <span aria-hidden="true">★</span><span aria-hidden="true">★</span><span aria-hidden="true">★</span><span aria-hidden="true">★</span><span aria-hidden="true">★</span>
+  </div>
+  <div class="star-ratings-css-bottom" aria-hidden="true">
+    <span aria-hidden="true">★</span><span aria-hidden="true">★</span><span aria-hidden="true">★</span><span aria-hidden="true">★</span><span aria-hidden="true">★</span>
+  </div>
 </div>

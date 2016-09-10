@@ -168,7 +168,7 @@ export class FormComponent implements OnInit {
     this.setFocus(0);
   }
 
-  public onPlaceAutocomplete(event, id: string, index: number) {
+  public onPlaceAutocomplete(event, id: string, index: number): void {
     let preInputId: string = this.formComponentId + '-id-';
     let preInputIdLength: number = preInputId.length;
     let inputId: number = Number( id.substr(preInputIdLength) );
@@ -253,7 +253,7 @@ export class FormComponent implements OnInit {
     return this.inputTypes.indexOf(type) !== -1;
   }
 
-  public formSubmit() {
+  public formSubmit(): void {
     if (this.registerForm.valid || true)  {
       let formValue = this.registerForm.value;
       let formOutput = {
@@ -278,7 +278,7 @@ export class FormComponent implements OnInit {
     }
   }
 
-  private switchModes(newForm) {
+  private switchModes(newForm): void {
     this.mode = newForm;
     this.formInfo = this.allFormInfo[this.mode];
     this.currentFocus.emit(this.formInfo.title);
@@ -288,7 +288,7 @@ export class FormComponent implements OnInit {
 
   // This helps insure that there are unique input Ids
   // when there are multiple form components.
-  private setFormComponenetId() {
+  private setFormComponenetId(): void {
     if (this.formComponentId === undefined) {
       this.formComponentId = 'form-' + Math.floor( Math.random() * 10000);
     }
@@ -417,7 +417,7 @@ export class FormComponent implements OnInit {
     }
   }
 
-  private camelize(str) { // http://stackoverflow.com/a/2970667/5357459
+  private camelize(str: string): string { // http://stackoverflow.com/a/2970667/5357459
     return str.replace(/(?:^\w|[A-Z]|\b\w)/g, function(letter, index) {
       return index === 0 ? letter.toLowerCase() : letter.toUpperCase();
     }).replace(/\s+/g, '');

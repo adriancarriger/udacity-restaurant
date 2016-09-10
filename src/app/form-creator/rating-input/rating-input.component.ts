@@ -12,8 +12,8 @@ export class RatingInputComponent implements OnInit {
   @Output() updateValue = new EventEmitter();
   public ratings: Array<number> = [];
   public displayValue: number;
+  public maxRating: number;
   private value: number;
-  private maxRating: number;
 
   public ngOnInit(): void {
     // Set max rating

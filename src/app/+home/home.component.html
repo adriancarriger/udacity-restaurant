@@ -4,6 +4,7 @@
     <h1 class="headline">Find and review resturants near you</h1>
     <app-cropped-image
     [src]="'assets/header.jpg'"
+    [attr.aria-label]="'Image of restaurant with tables set without people'"
     class="header-image"></app-cropped-image>
   </div>
   <div id="app-restaurants" class="filter" appStickyScroll>
@@ -11,6 +12,7 @@
       <input
         #searchInput
         (input)="termSearch = searchInput.value"
+        aria-label="Search through local restaurants"
         type="text"
         tabindex="10"
         placeholder="">
@@ -22,7 +24,7 @@
         <select
           #typeInput
           (change)="typeSearch = typeInput.value"
-          aria-label="Select a cuusine filter"
+          title="Filter restaurants by food type"
           tabindex="10">
           <option selected value="all">All types</option>
           <optgroup label="Cuisine">
@@ -37,6 +39,7 @@
         <select
           #locationInput
           (change)="locationSearch = locationInput.value"
+          title="Filter restaurants by location"
           aria-label="Select a location filter"
           tabindex="10">
           <option selected value="all">All locations</option>
@@ -51,6 +54,7 @@
       class="restaurant">
       <app-cropped-image
         [src]="places.placesMeta[placeId].photo"
+        [attr.aria-label]="'Image of' + places.placesMeta[placeId].name + 'restaurant, provided by the restaurant management.'"
         [routerLink]="['/restaurant', placeId]"
         class="restaurant-image"></app-cropped-image>
       <div class="restaurant-meta">
@@ -67,7 +71,11 @@
             {{places.placesMeta[placeId].vicinity}}
           </div>
           <div *ngIf="places.placesMeta[placeId].website" class="restaurant-website">
-            <a tabindex="10" href="{{places.placesMeta[placeId].website}}" target="_blank">Website</a>
+            <a
+              tabindex="10"
+              title="external website for {{places.placesMeta[placeId].name}}"
+              href="{{places.placesMeta[placeId].website}}"
+              target="_blank">Website</a>
           </div>
         </div>
         <div class="restaurant-hours-container meta-group">

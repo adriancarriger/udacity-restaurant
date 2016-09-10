@@ -12,6 +12,6 @@
     (mouseenter)="onMouseenter(rating)"
     (mouseout)="onMouseout(rating)"
     [attr.for]="field.id + '-' + rating">
-    <span class="star">★</span> {{rating}}
+    <span class="star" aria-label="star rating of">★</span> {{rating}} out of {{maxRating}}
   </label>
 </template>
