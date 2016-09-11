@@ -9,5 +9,9 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./star-view.component.scss']
 })
 export class StarViewComponent {
-  @Input() percentage;
+  @Input() percentage: number;
+  @Input() ratingFor: string;
+  ngOnInit() {
+    console.log(this.ratingFor);
+  }
 }

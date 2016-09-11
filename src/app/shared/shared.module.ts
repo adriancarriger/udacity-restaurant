@@ -11,6 +11,7 @@ import { StarViewComponent } from './star-view/index';
 import { PlacesService } from './places/index';
 import { GlobalEventsService } from './global-events/index';
 import { CroppedImageComponent } from './cropped-image/index';
+import { PhonePipe } from './phone/index';
 
 /**
  * Do not specify providers for modules that might be imported by a lazy loaded module.
@@ -27,16 +28,18 @@ import { CroppedImageComponent } from './cropped-image/index';
     NavbarComponent,
     FooterComponent,
     StarViewComponent,
-    CroppedImageComponent
+    CroppedImageComponent,
+    PhonePipe
   ],
   exports: [
+    CommonModule,
+    FormsModule,
+    RouterModule,
     NavbarComponent,
     FooterComponent,
     StarViewComponent,
     CroppedImageComponent,
-    CommonModule,
-    FormsModule,
-    RouterModule
+    PhonePipe
   ]
 })
 export class SharedModule {

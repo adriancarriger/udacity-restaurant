@@ -17,6 +17,11 @@
       &.title {
         font-size: 22px;
       }
+      &.restaurant-hours {
+        margin-top: 0;
+        margin-bottom: 0;
+        list-style: none;
+      }
     }
     .leave-review {
       font-size: 20px;
@@ -53,9 +58,10 @@
     height: 100px;
   }
   padding-top: 40px;
-  h2 {
+  .title {
     text-align: center;
     padding: 10px;
+    font-size: 30px;
     margin-bottom: 0;
     border-bottom: solid $lightGray 1px;
   }

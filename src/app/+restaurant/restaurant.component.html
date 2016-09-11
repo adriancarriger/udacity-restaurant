@@ -4,20 +4,32 @@
     class="image"></app-cropped-image>
   <div class="restaurant-meta">
     <app-star-view
+      *ngIf="places.placesMeta[restaurantId]?.rating"
       [percentage]="(places.placesMeta[restaurantId]?.rating / 5) * 100"
+      [ratingFor]="places.placesMeta[restaurantId]?.name + ' restaurant'"
       class="rating"></app-star-view>
     <h1 class="meta-item title">{{places.placesMeta[restaurantId]?.name}}</h1>
-    <div class="meta-item">{{places.placesMeta[restaurantId]?.phone}}</div>
-    <div class="meta-item">{{places.placesMeta[restaurantId]?.vicinity}}</div>
+    <div
+      class="meta-item"
+      *ngIf="places.placesMeta[restaurantId]?.phone">
+      <a
+        [attr.aria-label]="'phone number: ' + places.placesMeta[restaurantId]?.phone"
+        href="tel:1{{places.placesMeta[restaurantId]?.phone | appPhone}}">{{places.placesMeta[restaurantId]?.phone}}</a>
+    </div>
+    <div
+      [attr.aria-label]="'Restaurant address: ' + places.placesMeta[restaurantId]?.vicinity"
+      class="meta-item">{{places.placesMeta[restaurantId]?.vicinity}}</div>
     <div *ngIf="places.placesMeta[restaurantId]?.website" class="meta-item">
       <a tabindex="10" href="{{places.placesMeta[restaurantId]?.website}}" target="_blank">Website</a>
     </div>
-    <div class="meta-item">
-      <div *ngFor="let hoursString of places.placesMeta[restaurantId]?.hours" class="restaurant-hours">
+    <ul aria-label="Restaurant hours" class="meta-item restaurant-hours">
+      <li *ngFor="let hoursString of places.placesMeta[restaurantId]?.hours">
         {{hoursString}}
-      </div>
-    </div>
-    <div class="meta-item">{{places.placesMeta[restaurantId]?.types}}</div>
+      </li>
+    </ul>
+    <div
+      [attr.aria-label]="'Categories: ' + places.placesMeta[restaurantId]?.types"
+      class="meta-item">{{places.placesMeta[restaurantId]?.types}}</div>
     <button
       pageScroll
       [pageScrollDuration]="700"
@@ -29,7 +41,7 @@
   </div>
 </div>
 <div class="reviews container">
-  <h2>reviews</h2>
+  <h1 class="title">reviews</h1>
   <div [ngClass]="{'open': showMore}" class="review-drawer">
     <div
       *ngFor="let review of places.placesMeta[restaurantId]?.reviews"
