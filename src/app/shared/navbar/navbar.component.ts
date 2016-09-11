@@ -23,4 +23,8 @@ export class NavbarComponent implements OnInit {
     });
   }
 
+  public skipNavigation(): void {
+    document.getElementById('start-of-content').focus();
+  }
+
 }

@@ -67,6 +67,7 @@
             *ngIf="places.placesMeta[placeId]?.phone">
             <a
               [attr.aria-label]="'phone number: ' + places.placesMeta[placeId]?.phone"
+              tabindex="10"
               href="tel:1{{places.placesMeta[placeId]?.phone | appPhone}}">{{places.placesMeta[placeId]?.phone}}</a>
           </div>
         </div>

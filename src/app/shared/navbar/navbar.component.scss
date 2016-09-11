@@ -14,12 +14,34 @@
 			background: linear-gradient(rgba(45, 45, 45, 0.6), rgba(45, 45, 45, 1));
 		}
 	}
+	.skip-nav {
+		position: absolute;
+		left: -1000%;
+		&:focus {
+			position: fixed;
+			top: 2px;
+			left: 2px;
+			z-index: 99999;
+			padding: 10px;
+			font-size: 20px;
+			height: $navHeight - 4px;
+			color: white;
+			background-color: $primaryColor;
+		}
+	}
+	&:not(.transparent) .skip-nav:focus {
+		outline: $whiteOutline;
+	}
 	&.transparent {
 		background-color: transparent;
 		position: absolute;
 		left: 0;
 		right: 0;
 		z-index: 3;
+		.skip-nav {
+			background-color: white;
+			color: black;
+		}
 	}
 	&.navbar-default {
 		.navbar-brand, .navbar-nav > li > a {
@@ -84,4 +106,8 @@
   .mobile-collapse {
 		text-align: center;
   }
+}
+#start-of-content {
+	position: absolute;
+	left: -1000%;
 }

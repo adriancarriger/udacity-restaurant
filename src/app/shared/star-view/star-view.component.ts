@@ -11,7 +11,4 @@ import { Component, Input } from '@angular/core';
 export class StarViewComponent {
   @Input() percentage: number;
   @Input() ratingFor: string;
-  ngOnInit() {
-    console.log(this.ratingFor);
-  }
 }

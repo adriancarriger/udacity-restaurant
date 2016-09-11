@@ -1,5 +1,6 @@
 <nav id="navbar" [ngClass]="{'transparent': homePage}" class="navbar navbar-default">
 	<div [ngClass]="{'darker': !isCollapsed}">
+		<button (click)="skipNavigation()" tabindex="1" class="skip-nav btn">Skip to main content</button>
 		<div class="navbar-header">
 			<a
 				aria-label="Home"
@@ -37,3 +38,4 @@
 		</div>
 	</div>
 </nav>
+<div id="start-of-content" aria-label="You have skipped to the main content" tabindex="-1"></div>
