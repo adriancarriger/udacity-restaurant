@@ -7,6 +7,7 @@ import { Component, AfterViewInit, OnChanges, ElementRef, Renderer, Input } from
 })
 export class CroppedImageComponent implements AfterViewInit, OnChanges {
   @Input() src;
+  @Input() alt;
   constructor(
     private renderer: Renderer,
     private element: ElementRef) { }

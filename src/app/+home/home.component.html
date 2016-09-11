@@ -4,7 +4,7 @@
     <h1 class="headline">Find and review resturants near you</h1>
     <app-cropped-image
     [src]="'assets/header.jpg'"
-    [attr.aria-label]="'Image of restaurant with tables set without people'"
+    [alt]="'Image of restaurant with tables set without people'"
     class="header-image"></app-cropped-image>
   </header>
   <div id="app-restaurants" class="filter" appStickyScroll>
@@ -54,7 +54,6 @@
       class="restaurant">
       <app-cropped-image
         [src]="places.placesMeta[placeId].photo"
-        [attr.aria-label]="'Image of' + places.placesMeta[placeId].name + 'restaurant, provided by the restaurant management.'"
         [routerLink]="['/restaurant', placeId]"
         class="restaurant-image"></app-cropped-image>
       <div class="restaurant-meta">
