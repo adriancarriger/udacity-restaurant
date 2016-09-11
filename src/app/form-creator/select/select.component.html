@@ -9,7 +9,7 @@
     (change)="field.length = onInput($event);"
     (focus)="field.focused = true;"
     (blur)="field.focused = false"
-    tabindex="{{tabIndex}}">
+    [attr.tabindex]="tabIndex ? tabIndex : null">
     <option
       *ngFor="let item of items"
       value="{{item}}">{{item}}</option>

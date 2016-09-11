@@ -14,18 +14,16 @@
         (input)="termSearch = searchInput.value"
         aria-label="Search through local restaurants"
         type="text"
-        tabindex="10"
         placeholder="">
       <i aria-hidden="true" class="ion-ios-search-strong"></i>
-      <button tabindex="10"   class="filter-toggle btn" [ngClass]="{'ion-plus': isCollapsed, 'ion-minus': !isCollapsed}" (click)="isCollapsed = !isCollapsed"></button>
+      <button class="filter-toggle btn" [ngClass]="{'ion-plus': isCollapsed, 'ion-minus': !isCollapsed}" (click)="isCollapsed = !isCollapsed"></button>
     </div>
     <div [ngClass]="{'not-collapsed': !isCollapsed}" class="mobile-collapse">
       <div class="input-item">
         <select
           #typeInput
           (change)="typeSearch = typeInput.value"
-          title="Filter restaurants by food type"
-          tabindex="10">
+          title="Filter restaurants by food type">
           <option selected value="all">All types</option>
           <optgroup label="Cuisine">
             <option *ngFor="let cuisine of places.cuisineTypes" value="{{cuisine}}">{{cuisine}}</option>
@@ -40,8 +38,7 @@
           #locationInput
           (change)="locationSearch = locationInput.value"
           title="Filter restaurants by location"
-          aria-label="Select a location filter"
-          tabindex="10">
+          aria-label="Select a location filter">
           <option selected value="all">All locations</option>
           <option *ngFor="let location of places.locations"  value="{{location}}">{{location}}</option>
         </select>
@@ -59,14 +56,13 @@
       <div class="restaurant-meta">
         <div class="meta-group">
           <div class="restaurant-name">
-            <a [routerLink]="['/restaurant', placeId]" tabindex="10" href="#">{{places.placesMeta[placeId].name}}</a>
+            <a [routerLink]="['/restaurant', placeId]" href="#">{{places.placesMeta[placeId].name}}</a>
           </div>
           <div
             class="restaurant-phone"
             *ngIf="places.placesMeta[placeId]?.phone">
             <a
               [attr.aria-label]="'phone number: ' + places.placesMeta[placeId]?.phone"
-              tabindex="10"
               href="tel:1{{places.placesMeta[placeId]?.phone | appPhone}}">{{places.placesMeta[placeId]?.phone}}</a>
           </div>
         </div>
@@ -76,7 +72,6 @@
             class="restaurant-address">{{places.placesMeta[placeId]?.vicinity}}</div>
           <div *ngIf="places.placesMeta[placeId].website" class="restaurant-website">
             <a
-              tabindex="10"
               title="external website for {{places.placesMeta[placeId].name}}"
               href="{{places.placesMeta[placeId].website}}"
               target="_blank">Website</a>

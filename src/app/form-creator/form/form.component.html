@@ -40,7 +40,7 @@
         (input)="field.length = onInput($event, field.type);"
         (focus)="field.focused = true;"
         (blur)="field.focused = false"
-        tabindex="{{tabIndex}}"
+        [attr.tabindex]="tabIndex ? tabIndex : null"
         placeholder=""></textarea>
       <!-- Select -->
       <app-select
@@ -90,7 +90,7 @@
     <div *ngIf="field.type === 'option'" class="form-options {{field.classes}}">
       <a
         *ngIf="field.show === true"
-        tabindex="{{tabIndex}}"
+        [attr.tabindex]="tabIndex ? tabIndex : null"
         href="javascript:void(0);"
         class="btn option"
         (click)="showGroup(field.group); field.show = false">{{field.name}}</a>
@@ -100,11 +100,11 @@
       type="submit"
       [disabled]="!registerForm.valid"
       class="submit btn {{field.classes}}"
-      tabindex="{{tabIndex}}">{{field.text}} <i class="ion-chevron-right"></i></button>
+      [attr.tabindex]="tabIndex ? tabIndex : null">{{field.text}} <i class="ion-chevron-right"></i></button>
     <div *ngIf="field.type === 'special'" class="extra-info {{field.classes}}">
       <a
         href="javascript:void(0);"
-        tabindex="{{tabIndex}}"
+        [attr.tabindex]="tabIndex ? tabIndex : null"
         (click)="onSpecial(field.value)"
         class="change-mode">{{field.name}}</a>
     </div>

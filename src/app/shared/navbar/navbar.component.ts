@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
@@ -7,6 +7,7 @@ import { Router, NavigationEnd } from '@angular/router';
   styleUrls: ['navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
+  @Input() tabIndex: number;
   @ViewChild('startOfContent') startOfContent;
   public isCollapsed: boolean = true;
   public homePage: boolean;
@@ -28,10 +29,14 @@ export class NavbarComponent implements OnInit {
 
   /**
    * Set focus on `#start-of-content` and set the
-   * tabindex to 6 to allow normal tab flow
+   * tabindex to allow normal tab flow
    */
   public skipNavigation(): void {
-    this.startContentIndex = 6;
+    if (this.tabIndex) {
+      this.startContentIndex = this.tabIndex;
+    } else {
+      this.startContentIndex = 0;
+    }
     this.startOfContent.nativeElement.focus();
   }
 

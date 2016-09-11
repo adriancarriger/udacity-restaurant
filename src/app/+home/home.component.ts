@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { IPaginationInstance } from 'ng2-pagination';
 
 import { PlacesService } from '../shared/index';
@@ -8,7 +8,7 @@ import { PlacesService } from '../shared/index';
   templateUrl: 'home.component.html',
   styleUrls: ['home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {
   public isCollapsed: boolean = true;
   public termSearch: string = '';
   public typeSearch: string = 'all';
@@ -21,8 +21,4 @@ export class HomeComponent implements OnInit {
       currentPage: 1
   };
   constructor(public places: PlacesService) { }
-  
-  ngOnInit() {
-  }
-
 }

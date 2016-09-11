@@ -6,7 +6,7 @@
   (input)="field.length = onInput($event, field.type);"
   (focus)="field.focused = true;"
   (blur)="field.focused = false; onBlur($event)"
-  tabindex="{{tabIndex}}"
+  [attr.tabindex]="tabIndex ? tabIndex : null"
   [attr.required]="field.required ? true :  null"
   [attr.autocomplete]="field.autocomplete"
   [attr.aria-label]="field.ariaLabel"

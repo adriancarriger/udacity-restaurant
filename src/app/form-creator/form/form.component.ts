@@ -25,8 +25,8 @@ declare var google: any;
   styleUrls: ['form.component.scss']
 })
 export class FormComponent implements OnInit {
-  @Input() modeInit;
   @Input() allFormInfo;
+  @Input() modeInit: string;
   @Input() tabIndex;
   @Input() formErrorMessage: string;
   @Input() formComponentId: string;
@@ -76,7 +76,7 @@ export class FormComponent implements OnInit {
 
   public ngOnInit(): void {
     this.setFormComponenetId();
-    this.mode = this.modeInit;
+    this.mode = this.getMode();
     this.formInfo = this.allFormInfo[this.mode];
     this.sortInput();
     this.errorMessages = ValidationService.errorMessages;
@@ -275,6 +275,16 @@ export class FormComponent implements OnInit {
         }
       }
       this.formComplete.emit( formOutput );
+    }
+  }
+
+  private getMode(): string {
+    if (this.modeInit) {
+      // If modeInit input was given, then use it
+      return this.modeInit;
+    } else {
+      // Default to first form item
+      return Object.keys(this.allFormInfo)[0];
     }
   }
 

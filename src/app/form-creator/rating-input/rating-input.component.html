@@ -5,7 +5,7 @@
     [attr.name]="field.id"
     type="radio"
     value="{{rating}}"
-    tabindex="{{tabIndex}}"
+    [attr.tabindex]="tabIndex ? tabIndex : null"
     title="{{rating}} stars">
   <label
     [ngClass]="{'selected': rating === displayValue}"

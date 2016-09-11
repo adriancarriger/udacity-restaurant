@@ -14,14 +14,13 @@
       *ngIf="places.placesMeta[restaurantId]?.phone">
       <a
         [attr.aria-label]="'phone number: ' + places.placesMeta[restaurantId]?.phone"
-        tabindex="10"
         href="tel:1{{places.placesMeta[restaurantId]?.phone | appPhone}}">{{places.placesMeta[restaurantId]?.phone}}</a>
     </div>
     <div
       [attr.aria-label]="'Restaurant address: ' + places.placesMeta[restaurantId]?.vicinity"
       class="meta-item">{{places.placesMeta[restaurantId]?.vicinity}}</div>
     <div *ngIf="places.placesMeta[restaurantId]?.website" class="meta-item">
-      <a tabindex="10" href="{{places.placesMeta[restaurantId]?.website}}" target="_blank">Website</a>
+      <a href="{{places.placesMeta[restaurantId]?.website}}" target="_blank">Website</a>
     </div>
     <ul aria-label="Restaurant hours" class="meta-item restaurant-hours">
       <li *ngFor="let hoursString of places.placesMeta[restaurantId]?.hours">
@@ -37,8 +36,7 @@
       title="This button will move you to a form to leave a review"
       (click)="reviewForm.setFocus(800)"
       href="#reviewForm"
-      class="leave-review btn"
-      tabindex="10">Leave a review</button>
+      class="leave-review btn">Leave a review</button>
   </div>
 </div>
 <div class="reviews container">
@@ -59,16 +57,13 @@
   <button
     (click)="showMore = true"
     [ngClass]="{'hidden': showMore}"
-    class="read-more btn ion-ios-arrow-down"
-    tabindex="10">read more</button>
+    class="read-more btn ion-ios-arrow-down">read more</button>
 </div>
 <div class="leave-a-review">
   <app-form
     *ngIf="!reviewSubmitted"
     #reviewForm
     [allFormInfo]="formInfo"
-    [modeInit]="'review'"
-    [tabIndex]="10"
     (formComplete)="places.addReview(restaurantId, $event); reviewSubmitted = true;"
     id="reviewForm"
     class="form"></app-form>

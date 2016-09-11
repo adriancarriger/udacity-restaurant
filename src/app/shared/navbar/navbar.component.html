@@ -3,20 +3,19 @@
 	[ngClass]="{'transparent': homePage}"
 	class="navbar navbar-default">
 	<div [ngClass]="{'darker': !isCollapsed}">
-		<button (click)="skipNavigation()" tabindex="1" class="skip-nav btn">Skip to main content</button>
+		<button (click)="skipNavigation()" [attr.tabindex]="tabIndex ? 1 : null" class="skip-nav btn">Skip to main content</button>
 		<div class="navbar-header">
 			<a
 				aria-label="Home"
+				[attr.tabindex]="tabIndex ? tabIndex : null"
 				[routerLink]="['/']"
-				tabindex="5"
 				class="navbar-brand ion-fork">
 			</a>
 			<button
 				type="button"
 				class="navbar-toggle"
 				(click)="isCollapsed = !isCollapsed"
-				aria-label="Toggle navigation options"
-				tabindex="5">
+				aria-label="Toggle navigation options">
 				<span class="sr-only">Toggle navigation</span>
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
@@ -28,13 +27,13 @@
         <li role="menuitem">
 					<a
 						pageScroll
+						[attr.tabindex]="tabIndex ? tabIndex : null"
 						[routerLink]="['/']"
-						tabindex="5"
 						href="#app-restaurants">Restaurants</a>
         </li>
 				<li role="menuitem">
 					<a
-						tabindex="5"
+						[attr.tabindex]="tabIndex ? tabIndex : null"
 						href="https://github.com/adriancarriger">Github</a>
         </li>
 			</ul>
@@ -46,4 +45,4 @@
 	id="start-of-content"
 	(blur)="startContentBlur()"
 	aria-label="You have skipped to the main content"
-	tabindex="{{startContentIndex}}"></div>
+	[attr.tabindex]="startContentIndex"></div>
