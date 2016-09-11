@@ -17,13 +17,14 @@
                 (click)="p.setCurrent(page.value)"
                 *ngIf="p.getCurrent() !== page.value"
                 href="javascript:void(0);"
-                aria-label=""
-                [attr.title]="'Page ' + page.label"
-                [attr.aria-label]="'Page ' + page.label"
+                [attr.title]="'Page ' + page.value"
+                [attr.aria-label]="'Page ' + page.value"
                 tabindex="500">
                 <span>{{ page.label }}</span>
             </a>
-            <div *ngIf="p.getCurrent() === page.value">
+            <div
+                *ngIf="p.getCurrent() === page.value"
+                [attr.aria-label]="'Current page, page ' + page.label">
                 <span>{{ page.label }}</span>
             </div>
         </div>
