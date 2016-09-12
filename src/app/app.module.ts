@@ -9,6 +9,7 @@ import { HomeModule } from './+home/home.module';
 import { RestaurantModule } from  './+restaurant/restaurant.module';
 import { LegalModule } from './+legal/legal.module';
 import { SharedModule } from './shared/shared.module';
+import { LoadingModule } from './loading/loading.module';
 
 @NgModule({
   imports: [
@@ -18,7 +19,8 @@ import { SharedModule } from './shared/shared.module';
     HomeModule,
     RestaurantModule,
     LegalModule,
-    SharedModule.forRoot()
+    SharedModule.forRoot(),
+    LoadingModule.forRoot()
   ],
   declarations: [
     AppComponent
