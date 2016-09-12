@@ -7,12 +7,20 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+  <link href="app/styles/loading.css" rel="stylesheet">
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet">
   
 </head>
 <body>
-  <app-root>Loading...</app-root>
+  <app-root>
+    <div class="loading-container">
+      <div class="loading-area">
+        <h1>Loading</h1>
+        <div class="spin-progress"><div>Loading…</div></div>
+      </div>
+    </div>
+  </app-root>
   <script src="https://npmcdn.com/angular2@2.0.0-beta.17/es6/dev/src/testing/shims_for_IE.js"></script>
 </body>
 </html>
