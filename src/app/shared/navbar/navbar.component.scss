@@ -111,3 +111,18 @@
 	position: absolute;
 	left: -1000%;
 }
+
+.external-link {
+  position: relative;
+  padding: 15px;
+  padding-right: 33px;
+  .ion-share {
+    font-size: 23px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    right: 12px;
+    height: 25px;
+  }
+}

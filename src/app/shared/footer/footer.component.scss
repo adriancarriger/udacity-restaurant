@@ -10,6 +10,21 @@
       a, a:hover {
         color: white;
         padding: 5px;
+        &.external-link {
+          position: relative;
+          padding: 15px;
+          padding-right: 25px;
+          display: inline-block;
+          .ion-share {
+            font-size: 23px;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            right: 4px;
+            height: 32px;
+          }
+        }
       }
       a {
         text-decoration: none;
