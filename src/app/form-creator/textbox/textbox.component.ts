@@ -111,25 +111,25 @@ export class TextboxComponent implements OnInit {
   //   }
   // }
 
-  private hideGoogleMapsAutocomplete(): void {
-    // ** Workaround for modal scrolling **
-    // 1) Hide autocomplete suggestions on scroll
-    let gmElements: any = document.querySelectorAll('.pac-container');
-    for (let i = 0; i < gmElements.length; i++) {
-      gmElements[i].style.display = 'none';
-    }
-    // 2) After scrolling stops remove and reapply focus to move
-    // autocomplete suggestions to the correct position
-    clearTimeout(this.timeout);
-    this.timeout = setTimeout( () => {
-      if (this.element.nativeElement.firstElementChild === document.activeElement) {
-        this.renderer.invokeElementMethod(
-          this.element.nativeElement.firstElementChild, 'blur', []);
-        this.renderer.invokeElementMethod(
-          this.element.nativeElement.firstElementChild, 'focus', []);
-      }
-    }, 300);
-  }
+  // private hideGoogleMapsAutocomplete(): void {
+  //   // ** Workaround for modal scrolling **
+  //   // 1) Hide autocomplete suggestions on scroll
+  //   let gmElements: any = document.querySelectorAll('.pac-container');
+  //   for (let i = 0; i < gmElements.length; i++) {
+  //     gmElements[i].style.display = 'none';
+  //   }
+  //   // 2) After scrolling stops remove and reapply focus to move
+  //   // autocomplete suggestions to the correct position
+  //   clearTimeout(this.timeout);
+  //   this.timeout = setTimeout( () => {
+  //     if (this.element.nativeElement.firstElementChild === document.activeElement) {
+  //       this.renderer.invokeElementMethod(
+  //         this.element.nativeElement.firstElementChild, 'blur', []);
+  //       this.renderer.invokeElementMethod(
+  //         this.element.nativeElement.firstElementChild, 'focus', []);
+  //     }
+  //   }, 300);
+  // }
 
   private autocomplete(): void {
     // Sets up Google Maps autocomplete suggestions

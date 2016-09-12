@@ -4,8 +4,14 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'appSearch'
 })
 export class SearchPipe implements PipeTransform {
-  
-  transform(value: any, placesMeta: any, term?, type?, location?, filteredMeta?, lastUpdated?): any {
+
+  transform(
+    value: any,
+    placesMeta: any,
+    term?, type?,
+    location?,
+    filteredMeta?,
+    lastUpdated?): any {
     let queries: Array<string> = [];
     if (value === undefined) { return; }
     if (term === '' && type === 'all' && location === 'all') {
@@ -43,7 +49,7 @@ export class SearchPipe implements PipeTransform {
           let types = placesMeta[item].typesArray;
           for (let i = 0; i < types.length; i++) {
             searchable += ' ' + types[i];
-          } 
+          }
         }
         // add location to searchable text
         if ('location' in placesMeta[item]) {
@@ -56,7 +62,7 @@ export class SearchPipe implements PipeTransform {
             if ('text' in reviews[i]) {
               searchable += ' ' + reviews[i].text;
             }
-          } 
+          }
         }
         // Normalize text to lowercase
         searchable = searchable.toLowerCase();
@@ -72,7 +78,7 @@ export class SearchPipe implements PipeTransform {
   }
 
   private readableQueries(filterValues: Array<string>): string {
-    let filterReadable: string = '';
+    let filterReadable = '';
     let filteredArray = [];
     let defaults = ['', 'all'];
     for (let i = 0 ; i < filterValues.length; i++) {

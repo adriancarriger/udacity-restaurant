@@ -1,13 +1,10 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
 import { SlimLoadingBarComponent, SlimLoadingBarService } from 'ng2-slim-loading-bar';
 
 import { LoadingComponent } from './loading/index';
 
 @NgModule({
-  imports: [
-    
-  ],
+  imports: [],
   declarations: [
     LoadingComponent,
     SlimLoadingBarComponent

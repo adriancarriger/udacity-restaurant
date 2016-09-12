@@ -20,10 +20,6 @@ export class SelectComponent {
   @Output() placeAutocomplete = new EventEmitter();
   public ariaLabel: string = '';
 
-  ngOnInit() {
-    console.log( this.field );
-  }
-
   public onInput(event): number {
     return event.target.value.length;
   }

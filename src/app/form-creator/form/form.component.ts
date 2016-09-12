@@ -12,7 +12,7 @@ import {
   Renderer,
   ChangeDetectorRef
 } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { ValidationService } from '../validation/validation.service';
 
 import { Validators } from '@angular/forms';
@@ -414,7 +414,7 @@ export class FormComponent implements OnInit {
 
   // http://stackoverflow.com/a/4775737/5357459
   private isArray(input: any): boolean {
-    if( Object.prototype.toString.call( input ) === '[object Array]' ) {
+    if ( Object.prototype.toString.call( input ) === '[object Array]' ) {
       return true;
     }
   }

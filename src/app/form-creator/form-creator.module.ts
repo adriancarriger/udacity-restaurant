@@ -1,4 +1,4 @@
-import { NgModule, ModuleWithProviders } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -16,7 +16,7 @@ import { ValuesPipe } from './values/values.pipe';
   imports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule 
+    ReactiveFormsModule
   ],
   declarations: [
     TextboxComponent,

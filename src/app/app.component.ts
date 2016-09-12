@@ -10,7 +10,7 @@ import { GlobalEventsService } from './shared/index';
   encapsulation: ViewEncapsulation.None,
 })
 export class AppComponent implements OnInit {
-  
+
   constructor(
     private places: PlacesService,
     private globalEventsService: GlobalEventsService) { }

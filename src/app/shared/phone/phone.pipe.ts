@@ -7,7 +7,7 @@ export class PhonePipe implements PipeTransform {
 
   transform(value: any, args?: any): any {
     if (value === null) { return; }
-    return value.replace(/\D/g,'');
+    return value.replace(/\D/g, '');
   }
 
 }

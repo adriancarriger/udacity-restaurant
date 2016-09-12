@@ -1,8 +1,8 @@
 import {
   Directive,
   ElementRef,
-  Input,
   Renderer,
+  HostBinding,
   OnInit,
   AfterViewInit,
   OnDestroy
@@ -11,15 +11,13 @@ import {
 import { GlobalEventsService } from '../../shared/index';
 
 @Directive({
-  selector: '[appStickyScroll]',
-  host: {
-    '[style.top]': '0',
-    '[style.left]': '0',
-    '[style.right]': '0',
-    '[style.z-index]': '10'
-  }
+  selector: '[appStickyScroll]'
 })
 export class StickyScrollDirective implements OnInit, AfterViewInit, OnDestroy {
+  @HostBinding('style.top') topStyle = '0';
+  @HostBinding('style.left') leftStyle = '0';
+  @HostBinding('style.right') rightStyle = '0';
+  @HostBinding('style.z-index') zIndexStyle = '10';
   private fixed: boolean = false;
   private minScroll: number;
   private subscriptions = {
@@ -32,10 +30,12 @@ export class StickyScrollDirective implements OnInit, AfterViewInit, OnDestroy {
     private renderer: Renderer) { }
 
   public ngOnInit(): void {
-    this.subscriptions.resize = this.globalEventsService.elementsCollection.resize.emitter$.subscribe(data => {
+    this.subscriptions.resize
+      = this.globalEventsService.elementsCollection.resize.emitter$.subscribe(data => {
       this.getDimensions();
     });
-    this.subscriptions.scroll = this.globalEventsService.elementsCollection.scroll.emitter$.subscribe( () => {
+    this.subscriptions.scroll
+      = this.globalEventsService.elementsCollection.scroll.emitter$.subscribe( () => {
       this.updatePosition();
     });
   }
@@ -69,7 +69,7 @@ export class StickyScrollDirective implements OnInit, AfterViewInit, OnDestroy {
       // Update the position (this will immediately restore `position: fixed` if appropriate)
       this.updatePosition();
     }, 0);
-    
+
   }
 
   /**

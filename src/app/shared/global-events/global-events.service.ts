@@ -9,8 +9,6 @@ export class GlobalEventsService {
     resize: 300
   };
 
-  constructor() { }
-
   public init() { // Called once from app.componenet
     this.elementsCollection = {};
     this.observeElement(document, 'scroll');

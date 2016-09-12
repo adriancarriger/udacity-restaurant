@@ -1,6 +1,5 @@
 import { Injectable, ApplicationRef } from '@angular/core';
 import { Http, Response } from '@angular/http';
-import { URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { MapsAPILoader } from 'angular2-google-maps/core';
 import 'rxjs/add/operator/map';
@@ -100,7 +99,7 @@ export class PlacesService {
    * @return {any} The Observable for the HTTP request.
    */
   private getCordinates(): Observable<any> {
-    let url: string = 'https://geoip.nekudo.com/api';
+    let url = 'https://geoip.nekudo.com/api';
     return this.http.get( url )
       .map((res: Response) => res.json())
       .publishLast().refCount()
@@ -167,12 +166,12 @@ export class PlacesService {
                         types: '',
                         vicinity: '',
                         website: ''
-                      }
+                      };
                       if (this.requestedPlace !== undefined && this.requestedPlace === id) {
                         this.getPlaceDetails(id, service);
                         this.requestedPlace  = undefined;
                       }
-                    }     
+                    }
                   }
                 }
               }
@@ -196,7 +195,7 @@ export class PlacesService {
   }
 
   private queriesToString(input: Array<string>): string {
-    let queryString: string = '';
+    let queryString = '';
     for (let i = 0; i < input.length; i++) {
       queryString += input[i];
       if (i + 1 !== input.length) { queryString += ', '; }
@@ -224,18 +223,18 @@ export class PlacesService {
   private getDetails(service): void {
     this.timeoutWait = 0;
     for (let i = 0; i < this.places.length; i++) {
-      let place_id = this.places[i];
-      if (!this.placesMeta[ place_id ].detailsAdded) {
-        this.getPlaceDetails(place_id, service);
+      let placeId = this.places[i];
+      if (!this.placesMeta[ placeId ].detailsAdded) {
+        this.getPlaceDetails(placeId, service);
       }
     }
   }
 
-  private getPlaceDetails(place_id, service) {
-    let qString: string = this.queriesToString( this.placesMeta[place_id].typesArray );
-    this.placesMeta[place_id].types = qString;
+  private getPlaceDetails(placeId, service) {
+    let qString: string = this.queriesToString( this.placesMeta[placeId].typesArray );
+    this.placesMeta[placeId].types = qString;
     let request = {
-      placeId: place_id
+      placeId: placeId
     };
     setTimeout( () => {
       service.getDetails(request, (result, status) => {
@@ -288,7 +287,7 @@ export class PlacesService {
   }
 
   private hoursToArray(input?): Array<string> {
-    if (input.periods.length === 1) { return ['24 hours']; } 
+    if (input.periods.length === 1) { return ['24 hours']; }
     let days = [];
     for (let i = 0; i < input.weekday_text.length; i++) {
       let index = i + 1;
@@ -298,12 +297,12 @@ export class PlacesService {
     let output = [];
     // Merge duplicate days
     let lastDay: string = days[0];
-    let firstInPattern: number = 0;
+    let firstInPattern = 0;
     for (let i = 1; i < days.length; i++) {
       if (days[i] !== lastDay) {
         // Convert last to string
-        let dayString = this.daysToString(firstInPattern, i-1);
-        output.push( dayString + days[i-1] );
+        let dayString = this.daysToString(firstInPattern, i - 1);
+        output.push( dayString + days[i - 1] );
         lastDay = days[i];
         firstInPattern = i;
       }
@@ -314,12 +313,12 @@ export class PlacesService {
   }
 
   private daysToString(firstDay: number, lastDay: number): string {
-    if (firstDay === 0 && lastDay === 6) { return 'Everyday '}
+    if (firstDay === 0 && lastDay === 6) { return 'Everyday '; }
     let firstM = moment().day(firstDay);
     let lastM =  moment().day(lastDay);
-    let multipleDayString: string = '';
+    let multipleDayString = '';
     // If hours are for multiple days
-    if (firstDay !== lastDay) { multipleDayString =  '-' + lastM.format('ddd') }
+    if (firstDay !== lastDay) { multipleDayString =  '-' + lastM.format('ddd'); }
     return firstM.format('ddd') + multipleDayString + ' ';
   }
 
