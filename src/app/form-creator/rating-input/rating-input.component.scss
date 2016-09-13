@@ -16,22 +16,21 @@ $innerStarDiff: 12px;
     position: absolute;
     left: -999999px;
     &:focus + label .star {
-      background-color: $formFocus;
       text-shadow: 0px 0px 7px $formFocus;
+      color: $formFocus;
     }
   }
   label {
     display: inline-block;
     font-size: 0;
+    cursor: pointer;
     .star {
       position: relative;
       font: $largeFont/1 FontAwesome;
       display: block;
-      color: #ccc;
       height: 1.5em;
       background-color: transparent;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      color: transparent;
       &:before {
         position: absolute;
         top: 0;
@@ -43,20 +42,17 @@ $innerStarDiff: 12px;
         font: ($largeFont - $innerStarDiff)/1 FontAwesome;
         display: block;
         content: "★";
-        color: #ccc;
+        //color: #ccc;
         height: 1.5em;
         $defaultColor: #c5c5c5;
-        background-color: $defaultColor;
+        color: $defaultColor;
         text-shadow: 0px 0px 0px $defaultColor;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
       }
     }
     &.selected .star:before,
     &.selected ~ label .star:before {
       $selectedColor: #ffb500;
-      background-color: $selectedColor;
-      text-shadow: 0px 0px 0px $selectedColor;
+      color: $selectedColor;
     }
   }
   @media (min-width: 381px) and (max-width: 600px) {
