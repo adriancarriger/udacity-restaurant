@@ -12,7 +12,7 @@ A restaurant review application with a focus on accessibility that meets the [re
 
 ## Tech Stack
 
-* Front end: [Angular 2](https://github.com/angular/angular) version 2.0.0-rc.5
+* Front end: [Angular 2](https://github.com/angular/angular) version 2.0.0-rc.7
 * Scaffolding: [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.11-webpack.8
 
 ## Development server
