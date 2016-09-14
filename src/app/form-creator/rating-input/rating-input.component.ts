@@ -1,4 +1,6 @@
 // Thanks!: https://codepen.io/chrisdpratt/pen/dmyne
+// Doesn't work in Safari without enabling an accessibility option
+// http://stackoverflow.com/a/18529393/5357459
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
