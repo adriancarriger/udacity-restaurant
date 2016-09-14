@@ -31,6 +31,7 @@
       [attr.aria-label]="'Categories: ' + places.placesMeta[restaurantId]?.types"
       class="meta-item">{{places.placesMeta[restaurantId]?.types}}</div>
     <button
+      *ngIf="!reviewSubmitted"
       pageScroll
       [pageScrollDuration]="700"
       title="This button will move you to a form to leave a review"
