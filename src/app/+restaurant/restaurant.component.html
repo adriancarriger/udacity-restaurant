@@ -20,7 +20,10 @@
       [attr.aria-label]="'Restaurant address: ' + places.placesMeta[restaurantId]?.vicinity"
       class="meta-item">{{places.placesMeta[restaurantId]?.vicinity}}</div>
     <div *ngIf="places.placesMeta[restaurantId]?.website" class="meta-item">
-      <a href="{{places.placesMeta[restaurantId]?.website}}" target="_blank">Website</a>
+      <a
+        href="{{places.placesMeta[restaurantId]?.website}}"
+        target="_blank"
+        class="external-link">Website <i class="ion-share"></i></a>
     </div>
     <ul aria-label="Restaurant hours" class="meta-item restaurant-hours">
       <li *ngFor="let hoursString of places.placesMeta[restaurantId]?.hours">
