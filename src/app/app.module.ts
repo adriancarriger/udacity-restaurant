@@ -12,6 +12,9 @@ import { SharedModule } from './shared/shared.module';
 import { LoadingModule } from './loading/loading.module';
 
 @NgModule({
+  declarations: [
+    AppComponent
+  ],
   imports: [
     BrowserModule,
     HttpModule,
@@ -22,13 +25,7 @@ import { LoadingModule } from './loading/loading.module';
     SharedModule.forRoot(),
     LoadingModule.forRoot()
   ],
-  declarations: [
-    AppComponent
-  ],
   providers: [],
-  entryComponents: [AppComponent],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-
-}
+export class AppModule { }
