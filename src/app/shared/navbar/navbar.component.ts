@@ -15,6 +15,7 @@ export class NavbarComponent implements OnInit {
   public homePage: boolean;
   public skipLabel: string;
   public startContentIndex: number = -1;
+  private initalLoadComplete = false;
   constructor(private router: Router, private places: PlacesService) {}
 
   public ngOnInit(): void {
@@ -24,6 +25,7 @@ export class NavbarComponent implements OnInit {
         this.homePage = event.url === '/';
         document.body.scrollTop = 0;
         this.autoSkipNav();
+        this.initalLoadComplete = true;
       }
     }, (error: any) => {
       this.isCollapsed = true;
@@ -43,6 +45,7 @@ export class NavbarComponent implements OnInit {
    * navigation
    */
   public autoSkipNav(): void {
+    if (!this.initalLoadComplete) { return; } // Only auto skip after inital load
     let pageTitle = '';
     if (this.homePage) {
       pageTitle = ' for the home page';
