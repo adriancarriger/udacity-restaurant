@@ -12,10 +12,6 @@
         padding: 15px;
         &.external-link {
           position: relative;
-          padding-right: 36px;
-          padding-top: 13px;
-          padding-bottom: 13px;
-          display: inline-block;
           .ion-share {
             font-size: 23px;
             position: absolute;
@@ -24,6 +20,12 @@
             margin: auto;
             right: 12px;
             height: 32px;
+          }
+          @media (min-width: 501px) {
+            padding-right: 36px;
+            padding-top: 13px;
+            padding-bottom: 13px;
+            display: inline-block;
           }
         }
       }
@@ -43,6 +45,13 @@
     @media (max-width: 500px) {
       li {
         display: block;
+        a, a:hover {
+          display: block;
+          &.external-link .ion-share {
+            left: 90px;
+            right: 0;
+          }
+        }
       }
       padding: 20px;
     }

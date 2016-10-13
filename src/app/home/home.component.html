@@ -1,7 +1,7 @@
 <div class="home-container">
   <header class="header">
     <div class="overlay"></div>
-    <h1 class="headline">Find and review resturants near you</h1>
+    <h1 class="headline">Find and review restaurants near you</h1>
     <app-cropped-image
     [src]="'assets/header.jpg'"
     [alt]="'Image of restaurant with tables set without people'"
@@ -26,7 +26,7 @@
           title="Filter restaurants by food type"
           aria-label="Filter restaurants by food type">
           <option
-            aria-label="All types of resturants"
+            aria-label="All types of restaurants"
             selected
             value="all">All types</option>
           <optgroup label="Cuisine">
@@ -44,7 +44,7 @@
           title="Filter restaurants by location"
           aria-label="Select a location filter">
           <option
-            aria-label="All resturant locations"
+            aria-label="All restaurant locations"
             selected
             value="all">All locations</option>
           <option *ngFor="let location of places.locations"  value="{{location}}">{{location}}</option>
