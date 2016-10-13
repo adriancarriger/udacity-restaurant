@@ -9,11 +9,12 @@
       margin: 20px;
       a, a:hover {
         color: white;
-        padding: 5px;
+        padding: 15px;
         &.external-link {
           position: relative;
-          padding: 15px;
-          padding-right: 25px;
+          padding-right: 36px;
+          padding-top: 13px;
+          padding-bottom: 13px;
           display: inline-block;
           .ion-share {
             font-size: 23px;
@@ -21,7 +22,7 @@
             top: 0;
             bottom: 0;
             margin: auto;
-            right: 4px;
+            right: 12px;
             height: 32px;
           }
         }
