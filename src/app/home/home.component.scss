@@ -107,6 +107,11 @@ $smallBreakPoint: 480px;
           }
         }
       }
+      @media (min-width: 1401px) {
+        &.search input {
+          padding-left: 60px;
+        }
+      }
       @media (max-width: 1400px) {
         &.search {
           width: 18%;
