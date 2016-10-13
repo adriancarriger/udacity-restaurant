@@ -100,7 +100,7 @@
       type="submit"
       [disabled]="!registerForm.valid"
       class="submit btn {{field.classes}}"
-      [attr.tabindex]="tabIndex ? tabIndex : null">{{field.text}} <i class="ion-chevron-right"></i></button>
+      [attr.tabindex]="tabIndex ? tabIndex : null">{{field.text}} <i aria-hidden="true" class="ion-chevron-right"></i></button>
     <div *ngIf="field.type === 'special'" class="extra-info {{field.classes}}">
       <a
         href="javascript:void(0);"

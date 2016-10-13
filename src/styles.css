@@ -68,6 +68,11 @@
 	background: #ff3c3c;
 }
 
+.spin-progress > div {
+	width: 0px;
+	overflow: hidden;
+}
+
 .spin-progress > div:before {
 	transform: rotate(-90deg);
 	background: #f50000;

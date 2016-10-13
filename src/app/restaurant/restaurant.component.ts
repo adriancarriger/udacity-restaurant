@@ -48,13 +48,17 @@ export class RestaurantComponent implements OnInit, OnDestroy {
   constructor(public places: PlacesService,
     private activatedRoute: ActivatedRoute) { }
 
-  ngOnInit() {
+  public ngOnInit(): void {
     this.restaurantId = this.activatedRoute.snapshot.url[1].path;
     this.places.requestPlace( this.restaurantId );
   }
 
-  ngOnDestroy() {
+  public ngOnDestroy(): void {
     this.reviewSubmitted = false;
+  }
+
+  public submit(): void {
+    this.reviewSubmitted = true;
   }
 
 }

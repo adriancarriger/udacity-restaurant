@@ -29,6 +29,12 @@
       color: white;
       margin-top: 30px;
     }
+    .loading-meta {
+      padding: 50px;
+      .spin-progress {
+        margin: 0;
+      }
+    }
   }
   @media (max-width: 767px) {
     padding-top: 30px;
@@ -64,6 +70,14 @@
     font-size: 30px;
     margin-bottom: 0;
     border-bottom: solid $lightGray 1px;
+  }
+  .loading-reviews {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
   }
   .review-drawer {
     height: 411px;

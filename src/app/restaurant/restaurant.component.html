@@ -30,6 +30,9 @@
         {{hoursString}}
       </li>
     </ul>
+    <div *ngIf="!(places.placesMeta[restaurantId]?.hours.length > 0)" class="loading-meta">
+      <div class="spin-progress"><div>Loading meta…</div></div>
+    </div>
     <div
       [attr.aria-label]="'Restaurant types: ' + places.placesMeta[restaurantId]?.types"
       class="meta-item">{{places.placesMeta[restaurantId]?.types}}</div>
@@ -45,6 +48,9 @@
 </div>
 <div class="reviews container">
   <h1 class="title">reviews</h1>
+  <div
+    *ngIf="!(places.placesMeta[restaurantId]?.reviews.length > 0)"
+    class="spin-progress loading-reviews"><div>Loading reviews…</div></div>
   <ul aria-label="Reviews list" [ngClass]="{'open': showMore}" class="review-drawer">
     <li
       *ngFor="let review of places.placesMeta[restaurantId]?.reviews"
@@ -68,10 +74,10 @@
     *ngIf="!reviewSubmitted"
     #reviewForm
     [allFormInfo]="formInfo"
-    (formComplete)="places.addReview(restaurantId, $event); reviewSubmitted = true;"
+    (formComplete)="places.addReview(restaurantId, $event); submit()"
     id="reviewForm"
     class="form"></app-form>
   <div *ngIf="reviewSubmitted">
-    <h2 class="thank-you">Thank you for your review</h2>
+    <h2 role="alert" class="thank-you">Thank you for your review</h2>
   </div>
 </div>
