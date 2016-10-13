@@ -65,6 +65,7 @@
     <div [ngClass]="{'fadeout': !showMore}"></div>
   </ul>
   <button
+    *ngIf="places.placesMeta[restaurantId]?.reviews.length > 0"
     (click)="showMore = true"
     [ngClass]="{'hidden': showMore}"
     class="read-more btn ion-ios-arrow-down">read more</button>
