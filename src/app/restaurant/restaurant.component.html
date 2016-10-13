@@ -1,6 +1,7 @@
 <div class="header container">
   <app-cropped-image
     [src]="places.placesMeta[restaurantId]?.photo"
+    [alt]="places.placesMeta[restaurantId] ? 'User submitted image for ' + places.placesMeta[restaurantId].name : null"
     class="image"></app-cropped-image>
   <div class="restaurant-meta">
     <app-star-view

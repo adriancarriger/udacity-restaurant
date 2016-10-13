@@ -62,6 +62,7 @@
       class="restaurant">
       <app-cropped-image
         [src]="places.placesMeta[placeId].photo"
+        [alt]="'User submitted image for ' + places.placesMeta[placeId].name"
         [routerLink]="['/restaurant', placeId]"
         class="restaurant-image"></app-cropped-image>
       <div class="restaurant-meta">
