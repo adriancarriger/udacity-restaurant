@@ -31,7 +31,7 @@
       </li>
     </ul>
     <div *ngIf="!(places.placesMeta[restaurantId]?.hours.length > 0)" class="loading-meta">
-      <div class="spin-progress"><div>Loading meta…</div></div>
+      <div class="spin-progress"><div>Loading restaurant information…</div></div>
     </div>
     <div
       [attr.aria-label]="'Restaurant types: ' + places.placesMeta[restaurantId]?.types"

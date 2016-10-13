@@ -52,8 +52,8 @@
       </div>
     </div>
   </div>
-  <div class="restaurants">
-    <div
+  <ul aria-label="Local restaurants" class="restaurants">
+    <li
       *ngFor="let placeId of places.places | appSearch:places.placesMeta:termSearch:typeSearch:locationSearch:filteredMeta:places.lastUpdated | paginate: config"
       class="restaurant">
       <app-cropped-image
@@ -102,10 +102,10 @@
             class="restaurant-types">{{places.placesMeta[placeId]?.types}}</div>
         </div>
       </div>
-    </div>
-    <div *ngIf="places.places !== undefined && filteredMeta?.count === 0" class="no-results">
+    </li>
+    <li *ngIf="places.places !== undefined && filteredMeta?.count === 0" class="no-results">
         No matches for {{filteredMeta.query}}
-    </div>
-    <app-pagination (pageChange)="config.currentPage = $event" [config]="config"></app-pagination>
-  </div>
+    </li>
+  </ul>
+  <app-pagination (pageChange)="config.currentPage = $event" [config]="config"></app-pagination>
 </div>
