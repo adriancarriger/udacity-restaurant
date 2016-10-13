@@ -1,6 +1,6 @@
 <div class="star-ratings-css">
   <span class="label">Star rating of {{ (percentage / 100) | percent}} <template [ngIf]="ratingFor">for {{ratingFor}}</template></span>
-  <div aria-hidden="true" class="star-ratings-css-top">
+  <div [style.width]="(percentage / 100) | percent" aria-hidden="true" class="star-ratings-css-top">
     <span aria-hidden="true">★</span><span aria-hidden="true">★</span><span aria-hidden="true">★</span><span aria-hidden="true">★</span><span aria-hidden="true">★</span>
   </div>
   <div class="star-ratings-css-bottom" aria-hidden="true">
