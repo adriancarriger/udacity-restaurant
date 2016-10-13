@@ -3,7 +3,10 @@
 	[ngClass]="{'transparent': homePage}"
 	class="navbar navbar-default">
 	<div [ngClass]="{'darker': !isCollapsed}">
-		<button (click)="skipNavigation()" [attr.tabindex]="tabIndex ? 1 : null" class="skip-nav btn">Skip to main content</button>
+		<button
+			(click)="skipNavigation()"
+			[attr.tabindex]="tabIndex ? 1 : null"
+			class="skip-nav btn">Skip to main content</button>
 		<div class="navbar-header">
 			<a
 				aria-label="Home"
@@ -15,7 +18,7 @@
 				type="button"
 				class="navbar-toggle"
 				(click)="isCollapsed = !isCollapsed"
-				aria-label="Toggle navigation options">
+				[attr.aria-label]="(isCollapsed ? 'Show' : 'Hide') + ' additional navigation options'">
 				<span class="sr-only">Toggle navigation</span>
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>

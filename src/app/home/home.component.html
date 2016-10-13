@@ -16,7 +16,11 @@
         type="text"
         placeholder="">
       <i aria-hidden="true" class="ion-ios-search-strong"></i>
-      <button class="filter-toggle btn" [ngClass]="{'ion-plus': isCollapsed, 'ion-minus': !isCollapsed}" (click)="isCollapsed = !isCollapsed"></button>
+      <button
+        [attr.aria-label]="(isCollapsed ? 'Show' : 'Hide') + ' additional filter options'"
+        class="filter-toggle btn"
+        [ngClass]="{'ion-plus': isCollapsed, 'ion-minus': !isCollapsed}"
+        (click)="isCollapsed = !isCollapsed"></button>
     </div>
     <div [ngClass]="{'not-collapsed': !isCollapsed}" class="mobile-collapse">
       <div class="input-item">
