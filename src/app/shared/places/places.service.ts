@@ -31,7 +31,8 @@ export class PlacesService {
   public lastUpdated: number;
   public updating: boolean = false;
   public locations = [];
-  private rateLimit: number = 500; // Only create a request every x miliseconds
+  public currentPlace: string;
+  private rateLimit: number = 800; // Only create a request every x miliseconds
   private timeoutWait: number = 0;
   private queries = {};
   private requestedPlace: string;
@@ -57,6 +58,11 @@ export class PlacesService {
    */
   public requestPlace(placeId): void {
     this.requestedPlace = placeId;
+    if (this.requestedPlace in this.placesMeta) {
+      this.currentPlace = this.placesMeta[this.requestedPlace].name;
+    } else {
+      this.currentPlace = undefined;
+    }
   }
 
   /**
@@ -169,7 +175,8 @@ export class PlacesService {
                       };
                       if (this.requestedPlace !== undefined && this.requestedPlace === id) {
                         this.getPlaceDetails(id, service);
-                        this.requestedPlace  = undefined;
+                        this.requestedPlace = undefined;
+                        this.currentPlace = results[i].name;
                       }
                     }
                   }

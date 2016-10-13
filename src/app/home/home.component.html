@@ -23,8 +23,12 @@
         <select
           #typeInput
           (change)="typeSearch = typeInput.value"
-          title="Filter restaurants by food type">
-          <option selected value="all">All types</option>
+          title="Filter restaurants by food type"
+          aria-label="Filter restaurants by food type">
+          <option
+            aria-label="All types of resturants"
+            selected
+            value="all">All types</option>
           <optgroup label="Cuisine">
             <option *ngFor="let cuisine of places.cuisineTypes" value="{{cuisine}}">{{cuisine}}</option>
           </optgroup>
@@ -39,7 +43,10 @@
           (change)="locationSearch = locationInput.value"
           title="Filter restaurants by location"
           aria-label="Select a location filter">
-          <option selected value="all">All locations</option>
+          <option
+            aria-label="All resturant locations"
+            selected
+            value="all">All locations</option>
           <option *ngFor="let location of places.locations"  value="{{location}}">{{location}}</option>
         </select>
       </div>
@@ -91,7 +98,7 @@
             [percentage]="(places.placesMeta[placeId].rating / 5) * 100"
             class="restaurant-rating"></app-star-view>
           <div
-            [attr.aria-label]="'Categories: ' + places.placesMeta[placeId]?.types"
+            [attr.aria-label]="'Restaurant types: ' + places.placesMeta[placeId]?.types"
             class="restaurant-types">{{places.placesMeta[placeId]?.types}}</div>
         </div>
       </div>

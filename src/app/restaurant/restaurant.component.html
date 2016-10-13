@@ -31,7 +31,7 @@
       </li>
     </ul>
     <div
-      [attr.aria-label]="'Categories: ' + places.placesMeta[restaurantId]?.types"
+      [attr.aria-label]="'Restaurant types: ' + places.placesMeta[restaurantId]?.types"
       class="meta-item">{{places.placesMeta[restaurantId]?.types}}</div>
     <button
       *ngIf="!reviewSubmitted"
@@ -45,19 +45,19 @@
 </div>
 <div class="reviews container">
   <h1 class="title">reviews</h1>
-  <div [ngClass]="{'open': showMore}" class="review-drawer">
-    <div
+  <ul aria-label="Reviews list" [ngClass]="{'open': showMore}" class="review-drawer">
+    <li
       *ngFor="let review of places.placesMeta[restaurantId]?.reviews"
       class="review">
       <app-star-view
         [percentage]="(review.rating / 5) * 100"
         class="meta-item rating"></app-star-view>
-      <div class="review-text">"{{review.text}}"</div>
-      <div class="review-author">{{review.author_name}}</div>
-      <div class="review-date">{{review.time | amFromUnix | amDateFormat:'M/D/YY'}}</div>
-    </div>
+      <div title="Review item text" class="review-text">"{{review.text}}"</div>
+      <div title="Review author" class="review-author">{{review.author_name}}</div>
+      <div title="Review date" class="review-date">{{review.time | amFromUnix | amDateFormat:'M/D/YY'}}</div>
+    </li>
     <div [ngClass]="{'fadeout': !showMore}"></div>
-  </div>
+  </ul>
   <button
     (click)="showMore = true"
     [ngClass]="{'hidden': showMore}"

@@ -45,5 +45,5 @@
 	#startOfContent
 	id="start-of-content"
 	(blur)="startContentBlur()"
-	aria-label="You have skipped to the main content"
+	[attr.aria-label]="skipLabel"
 	[attr.tabindex]="startContentIndex"></div>

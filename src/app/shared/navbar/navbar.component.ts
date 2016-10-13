@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 
+import { PlacesService } from '../places/index';
+
 @Component({
   selector: 'app-navbar',
   templateUrl: 'navbar.component.html',
@@ -11,8 +13,9 @@ export class NavbarComponent implements OnInit {
   @ViewChild('startOfContent') startOfContent;
   public isCollapsed: boolean = true;
   public homePage: boolean;
+  public skipLabel: string;
   public startContentIndex: number = -1;
-  constructor(private router: Router) {}
+  constructor(private router: Router, private places: PlacesService) {}
 
   public ngOnInit(): void {
     this.router.events.subscribe(event => {
@@ -20,7 +23,7 @@ export class NavbarComponent implements OnInit {
         this.isCollapsed = true;
         this.homePage = event.url === '/';
         document.body.scrollTop = 0;
-        this.skipNavigation();
+        this.autoSkipNav();
       }
     }, (error: any) => {
       this.isCollapsed = true;
@@ -28,16 +31,30 @@ export class NavbarComponent implements OnInit {
   }
 
   /**
-   * Set focus on `#start-of-content` and set the
-   * tabindex to allow normal tab flow
+   * Manually skip navigation
    */
   public skipNavigation(): void {
-    if (this.tabIndex) {
-      this.startContentIndex = this.tabIndex;
+    this.skipLabel = 'You have skipped to the main content';
+    this.focusPastNav();
+  }
+
+  /**
+   * Automatically skip navigation on page
+   * navigation
+   */
+  public autoSkipNav(): void {
+    let pageTitle = '';
+    if (this.homePage) {
+      pageTitle = ' for the home page';
     } else {
-      this.startContentIndex = 0;
+      if (this.places.currentPlace !== undefined) {
+        pageTitle = ' for the ' + this.places.currentPlace + ' restaurant';
+      } else {
+        pageTitle = ' for this restaurant';
+      }
     }
-    this.startOfContent.nativeElement.focus();
+    this.skipLabel = 'Skipping to the main content' + pageTitle;
+    this.focusPastNav();
   }
 
   /**
@@ -46,6 +63,19 @@ export class NavbarComponent implements OnInit {
    */
   public startContentBlur(): void {
     this.startContentIndex = -1;
+  }
+
+  /**
+   * Set focus on `#start-of-content` and set the
+   * tabindex to allow normal tab flow
+   */
+  private focusPastNav(): void {
+    if (this.tabIndex) {
+      this.startContentIndex = this.tabIndex;
+    } else {
+      this.startContentIndex = 0;
+    }
+    this.startOfContent.nativeElement.focus();
   }
 
 }
