@@ -23,7 +23,7 @@
       <a
         href="{{places.placesMeta[restaurantId]?.website}}"
         target="_blank"
-        class="external-link">Website <i class="ion-share"></i></a>
+        class="external-link">Website <i aria-hidden="true" class="ion-share"></i></a>
     </div>
     <ul aria-label="Restaurant hours" class="meta-item restaurant-hours">
       <li *ngFor="let hoursString of places.placesMeta[restaurantId]?.hours">
