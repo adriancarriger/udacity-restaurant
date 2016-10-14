@@ -9,9 +9,13 @@
     title="{{rating}} stars">
   <label
     [ngClass]="{'selected': rating === displayValue}"
-    (mouseenter)="onMouseenter(rating)"
-    (mouseout)="onMouseout(rating)"
-    [attr.for]="field.id + '-' + rating">
-    <span class="star" aria-label="star rating of">★</span> {{rating}} out of {{maxRating}}
+    [attr.for]="field.id + '-' + rating"
+    class="noselect">
+    <span
+      (mouseenter)="onMouseenter(rating)"
+      (mouseout)="onMouseout(rating)"
+      class="star"
+      aria-label="star rating of">★</span>
+    <span class="label-text">{{rating}} out of {{maxRating}}</span>
   </label>
 </template>

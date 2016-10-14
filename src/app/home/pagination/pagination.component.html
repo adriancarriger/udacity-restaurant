@@ -5,10 +5,9 @@
   <div class="custom-pagination">
     <div class="pagination-previous" [class.disabled]="p.isFirstPage()" *ngIf="p.directionLinks">
       <button
-        class="btn btn-link"
         *ngIf="!p.isFirstPage()"
         (click)="p.previous()"
-        class="ion-chevron-left"
+        class="btn btn-link ion-chevron-left"
         aria-label="Previous page"
         [attr.tabindex]="tabIndex ? tabIndex : null"></button>
     </div>
@@ -30,12 +29,11 @@
     </div>
     <div class="pagination-next" [class.disabled]="p.isLastPage()" *ngIf="p.directionLinks">
       <button
-        class="btn btn-link"
         *ngIf="!p.isLastPage()"
         aria-label="Next page"
         [attr.tabindex]="tabIndex ? tabIndex : null"
         (click)="p.next()"
-        class="ion-chevron-right"></button>
+        class="btn btn-link ion-chevron-right"></button>
     </div>
   </div>
 </pagination-controls>

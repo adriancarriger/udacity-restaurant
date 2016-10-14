@@ -1,33 +1,36 @@
 @import '../../styles/variables';
-$color: gray;
+$color: #777777;
 .custom-pagination {
-    display: flex;
-    max-width: 300px;
-    margin: auto;
-    height: 170px;
-    padding: 70px 0;
-    > div {
-      flex: 1;
-      font-size: 20px;
-      text-align: center;
-      border-bottom: 3px solid transparent;
-      -moz-user-select: none;
-      -webkit-user-select: none;
-      -ms-user-select: none;
-      &.current {
-          border-color: $color;
-      }
-      &.view-all {
-          flex-grow: 3;
-      }
+  display: flex;
+  max-width: 300px;
+  margin: auto;
+  height: 170px;
+  padding: 70px 0;
+  > div {
+    flex: 1;
+    font-size: 20px;
+    text-align: center;
+    border-bottom: 3px solid transparent;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    &.current {
+      border-color: $color;
+    }
+    &.view-all {
+      flex-grow: 3;
+    }
   }
-  a {
-      color: $color;
-      cursor: pointer;
-      text-decoration: none;
-      transition: none 2086ms ease-out;
+  a, .btn-link {
+    color: $color;
+    font-size: 20px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: none 2086ms ease-out;
+    padding: 0;
+    border-top: 0;
   }
 }
 .ng2-pagination {
-    display: none;
+  display: none;
 }

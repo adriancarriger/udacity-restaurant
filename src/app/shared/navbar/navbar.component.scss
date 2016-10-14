@@ -11,13 +11,24 @@
 	}
 	.darker {
 		@media (max-width: 767px) {
-			background-color: rgba(45, 45, 45, 0.6);
-			background: linear-gradient(rgba(45, 45, 45, 0.6), rgba(45, 45, 45, 1));
+			.mobile-collapse {
+				background-color: rgba(45, 45, 45, 0.6);
+			  background: linear-gradient(rgba(45, 45, 45, 0.6), rgba(45, 45, 45, 1));
+			}
 		}
 	}
 	.skip-nav {
 		position: absolute;
-		left: -1000%;
+		&:not(:focus) {
+			z-index: 99999999;
+			width: 1px;
+			overflow: hidden;
+			left: 100px;
+			padding: 0;
+			background: transparent;
+			color: black;
+    	font-size: 30px;
+		}
 		&:focus {
 			position: fixed;
 			top: 2px;
@@ -34,20 +45,24 @@
 		outline: $whiteOutline;
 	}
 	&.transparent {
-		background-color: transparent;
+		background-color: rgba(45, 45, 45, 0.7);
 		position: absolute;
 		left: 0;
 		right: 0;
 		z-index: 3;
-		.skip-nav {
+		.skip-nav:focus {
 			background-color: white;
 			color: black;
 		}
 	}
 	&.navbar-default {
+		.navbar-header {
+			height: $navHeight;
+		}
 		.navbar-brand, .navbar-nav > li > a {
 			color: white;
 			margin: 5px 0;
+			font-size: 21px;
 			@media (max-width: 767px) {
 				margin: 15px;
 			}
@@ -60,6 +75,8 @@
 			@media (max-width: 767px) {
 				li {
 					border-top: 1px solid white;
+					padding-bottom: 1px;
+					background-color: rgba(45, 45, 45, 0.3);
 					&:last-of-type {
 						border-bottom: 1px solid white;
 					}
@@ -89,6 +106,9 @@
 		&:focus {
 			outline: $whiteOutline;
 		}
+		.sr-only {
+			color: black;
+		}
 		.icon-bar {
 			background-color: white;
 		}
@@ -110,7 +130,10 @@
 }
 #start-of-content {
 	position: absolute;
-	left: -1000%;
+	height: 1px;
+	width: 1px;
+	z-index: 9999999;
+	outline: none;
 }
 
 .external-link {

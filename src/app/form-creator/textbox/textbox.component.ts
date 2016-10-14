@@ -89,48 +89,6 @@ export class TextboxComponent implements OnInit {
     }
   }
 
-  // private listenToModalScroll(): void {
-  //   // If this componenent is a child of a `.slide`
-  //   // element, then listen to that element's scroll event
-  //   let a: any = this.element.nativeElement;
-  //   let scrollElement = null;
-  //   while (a) {
-  //     if (a.classList !== undefined && a.classList.contains('slide')) {
-  //       scrollElement = a;
-  //       a = null;
-  //     } else {
-  //       a = a.parentNode;
-  //     }
-  //   }
-  //   if (scrollElement) {
-  //     this.globalEventsService.observeElement(scrollElement, 'scroll');
-  //     let collectionItem = scrollElement.localName + 'scroll';
-  //     this.globalEventsService.elementsCollection[collectionItem].emitter$.subscribe(data => {
-  //       this.hideGoogleMapsAutocomplete();
-  //     });
-  //   }
-  // }
-
-  // private hideGoogleMapsAutocomplete(): void {
-  //   // ** Workaround for modal scrolling **
-  //   // 1) Hide autocomplete suggestions on scroll
-  //   let gmElements: any = document.querySelectorAll('.pac-container');
-  //   for (let i = 0; i < gmElements.length; i++) {
-  //     gmElements[i].style.display = 'none';
-  //   }
-  //   // 2) After scrolling stops remove and reapply focus to move
-  //   // autocomplete suggestions to the correct position
-  //   clearTimeout(this.timeout);
-  //   this.timeout = setTimeout( () => {
-  //     if (this.element.nativeElement.firstElementChild === document.activeElement) {
-  //       this.renderer.invokeElementMethod(
-  //         this.element.nativeElement.firstElementChild, 'blur', []);
-  //       this.renderer.invokeElementMethod(
-  //         this.element.nativeElement.firstElementChild, 'focus', []);
-  //     }
-  //   }, 300);
-  // }
-
   private autocomplete(): void {
     // Sets up Google Maps autocomplete suggestions
     // this.listenToModalScroll();

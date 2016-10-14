@@ -25,7 +25,7 @@
 				<span class="icon-bar"></span>
 			</button>
 		</div>
-		<div [ngClass]="{'not-collapsed': !isCollapsed}" class="mobile-collapse" >
+		<div [attr.aria-hidden]="isCollapsed" [ngClass]="{'not-collapsed': !isCollapsed}" class="mobile-collapse">
 			<ul class="nav navbar-nav">
         <li>
 					<a
