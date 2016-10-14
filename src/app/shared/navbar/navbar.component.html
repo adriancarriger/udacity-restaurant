@@ -19,7 +19,7 @@
 				class="navbar-toggle"
 				(click)="isCollapsed = !isCollapsed"
 				[attr.aria-label]="(isCollapsed ? 'Show' : 'Hide') + ' additional navigation options'">
-				<span class="sr-only">Toggle navigation</span>
+				<span [attr.aria-hidden]="isCollapsed" class="sr-only">Toggle navigation</span>
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
@@ -27,14 +27,14 @@
 		</div>
 		<div [ngClass]="{'not-collapsed': !isCollapsed}" class="mobile-collapse" >
 			<ul class="nav navbar-nav">
-        <li role="menuitem">
+        <li>
 					<a
 						pageScroll
 						[attr.tabindex]="tabIndex ? tabIndex : null"
 						[routerLink]="['/']"
 						href="#app-restaurants">Restaurants</a>
         </li>
-				<li role="menuitem">
+				<li>
 					<a
 						[attr.tabindex]="tabIndex ? tabIndex : null"
 						href="https://github.com/adriancarriger"
