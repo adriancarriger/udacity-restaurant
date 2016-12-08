@@ -6,6 +6,15 @@ This is my third of five projects in the Udacity [Senior Web Developer Nanodegre
 
 To view this project, checkout the demo at: [https://adriancarriger.github.io/udacity-restaurant/](https://adriancarriger.github.io/udacity-restaurant/)
 
+<a href="https://adriancarriger.github.io/udacity-restaurant/">
+  <img alt="home page" src="https://raw.githubusercontent.com/adriancarriger/udacity-restaurant/master/images/example-1.png" width="200px">
+  <img alt="restaurant page top" src="https://raw.githubusercontent.com/adriancarriger/udacity-restaurant/master/images/example-2.png" width="200px">
+  <img alt="restaurant page review section" src="https://raw.githubusercontent.com/adriancarriger/udacity-restaurant/master/images/example-3.png" width="200px">
+</a>
+
+[![Example Gif](https://raw.githubusercontent.com/adriancarriger/udacity-restaurant/master/images/example.gif)](https://adriancarriger.github.io/udacity-restaurant/)
+
+
 ## Description
 
 A restaurant review application with a focus on accessibility that meets the [requirements](REQUIREMENTS.md).
